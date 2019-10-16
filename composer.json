@@ -1,0 +1,29 @@
+{
+  "name": "codeinwp/",
+  "description": "a trial project",
+  "homepage": "https://github.com/SilviuDinu",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Silviu Dinu",
+      "email": "friends@themeisle.com",
+      "homepage": "https://github.com/SilviuDinu"
+    }
+  ],
+  "scripts": {
+    "format": "phpcbf --standard=phpcs.xml --report-summary --report-source -s  --runtime-set testVersion 5.4- ",
+    "phpcs": "phpcs --standard=phpcs.xml -s --runtime-set testVersion 5.4-",
+    "lint": "composer run-script phpcs"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "installer-disable": "true"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0"
+  },
+  "require": {
+    "ext-mysqli": "^7.1"
+  }
+}

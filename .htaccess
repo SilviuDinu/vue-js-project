@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^index\.(php|html?)$ http://localhost/trial_2 [R=301,L]
