@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_SESSION['failed']) && $_SESSION['failed'] === true) {
+    echo '<script name="login_fail_routine" src="./assets/js/build.js"></script> <div class="alert-fail" style="display: none">
+            <strong>Oops!</strong> Wrong Username or Password</a>.
+        </div>';
+}
+$_SESSION['failed'] = false;
+unset($_SESSION['failed']);
+session_abort();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -11,3 +22,4 @@
 <div id="main"></div>
 </body>
 </html>
+

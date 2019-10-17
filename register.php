@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true) header('Location: index.html');
+if(!isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true) header('Location: index');
 session_abort();
 if (!isset($_POST["username_register"]) && !isset($_POST["password_register"])) {
-    header('Location: index.html');
+    header('Location: index');
 }
 
 if(isset($_POST["username_register"]) && isset($_POST["password_register"])){
@@ -17,5 +17,5 @@ if(isset($_POST["username_register"]) && isset($_POST["password_register"])){
         $password = $mysqli->real_escape_string($password_register);
         mysqli_query($con, "INSERT INTO users (username, password, email) VALUES ('$username_register', '$password', '$email_register')");
     }
-    header('Location: index.html');
+    header('Location: index');
 }

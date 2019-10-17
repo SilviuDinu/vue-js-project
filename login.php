@@ -1,11 +1,13 @@
 <?php
 session_start();
-if (!isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true) header('Location: index.html');
+if (!isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true) header('Location: index');
+if (isset($_SESSION['failed'])) {
+    unset($_SESSION['failed']);
+}
 session_abort();
 if (!isset($_POST["username_login"]) && !isset($_POST["password_login"])) {
-    header('Location: index.html');
+    header('Location: index');
 }
-
 if (isset($_POST["username_login"]) && isset($_POST["password_login"])) {
     define('ALLOW', true);
     include('config.php');
@@ -14,11 +16,13 @@ if (isset($_POST["username_login"]) && isset($_POST["password_login"])) {
     $check = mysqli_query($con, "SELECT username from users where username='$username_login' and password='$password_login'");
     if ($check->num_rows !== 0) {
         $_SESSION['loggedIn'] = true;
+        //$_SESSION['failed'] = false;
         header('Location: dashboard.php');
         //set the session on the login page
-    } else {
+    } else if ($check->num_rows === 0) {
         $_SESSION['loggedIn'] = false;
-        echo 'gresit';
+        $_SESSION['failed'] = true;
+        header('Location: index?fail');
     }
-
 }
+

@@ -1,9 +1,7 @@
 /* jshint esversion: 6 */
 import Vue from 'vue'
 import App from './App.vue'
-import render_login from "./components/render_login.vue"
-
-const NotFound = {template: '<h1 style="text-align: center; margin-top: 10%; font-size: 36px;">404 - Page not found</h1>'};
+import dashboard from "./components/dashboard.vue";
 
 window.addEventListener('load', function () {
     if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
@@ -19,14 +17,15 @@ window.addEventListener('load', function () {
     if (window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
         new Vue({ // eslint-disable-line no-new
             el: '#app',
-            components: {App},
-            render: (h) => h(App)
+            components: {dashboard},
+            render: (h) => h(dashboard)
         })
     }
 });
 
-
-
-
+if(window.location.search === '?fail') {
+    var msg = document.querySelector(".alert-fail");
+    jQuery(msg).slideDown().delay(3000).slideUp();
+}
 
 

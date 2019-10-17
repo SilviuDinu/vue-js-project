@@ -12,7 +12,6 @@ if ($mysqli->select_db('trial_1') === false) {
     $sql = "CREATE DATABASE trial_1";
     if ($mysqli->query($sql) === TRUE) {
         echo "<span id='success'>Database <b>trial_1</b> created successfully</span>";
-        //echo "</script></head></html>";
     } else {
         echo "Error creating database: " . $mysqli->error;
     }
