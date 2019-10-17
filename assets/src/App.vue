@@ -3,10 +3,7 @@
 
 <script>
     import Vue from 'vue'
-    import render_popup from "./components/render_popup.vue"
     import render_login from "./components/render_login.vue"
-    import dashboard from "./components/dashboard.vue"
-
     export default {
         data() {
             return {}
@@ -15,18 +12,11 @@
         },
         name: 'App.vue',
         components: {
-            dashboard
+            render_login
         }
     }
 </script>
 
 <template>
-        <dashboard></dashboard>
-<!--        <render_popup v-show="function() {-->
-<!--        console.log(this.path('/'));-->
-<!--          if(window.location.search === '?register') {-->
-<!--          console.log('sss');-->
-<!--          return true;-->
-<!--          }-->
-<!--        }"></render_popup>-->
+        <render_login></render_login>
 </template>
