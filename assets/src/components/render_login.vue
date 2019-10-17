@@ -4,7 +4,9 @@
 
     export default {
         data() {
-            return {}
+            return {
+               // currentRoute: window.location.pathname + window.location.hash
+            }
         },
         methods: {
             rise: function () {
@@ -20,7 +22,7 @@
             },
             popup: function () {
                 //window.open('index.html?register', "child", "toolbar=no,scrollbars=no,resizable=no,top=200,left=50%,width=600,height=775,location=no, title=no");
-                window.location.search = '?register';
+                //window.location.pathname + window.location.hash = '/vue-js-project/index.html#register';
             }
         },
         name: 'render_login'
@@ -29,7 +31,7 @@
 
 <template>
     <div>
-        <form action="login.php" class="login-form" method="post" >
+        <form action="login" class="login-form" method="post" >
             <h1>Login</h1>
 
             <div class="txtb">
@@ -41,11 +43,10 @@
                 <input type="password" name="password_login"  pattern="[A-Za-z0-9]+" @focus="rise()" @blur="fall()">
                 <span data-placeholder="Password"></span>
             </div>
-
             <input type="submit" class="logbtn" value="Login">
 
             <div class="bottom-text">
-                Don't have account? <button class="regbtn" @click.prevent="popup()">Sign up</button>
+                Don't have account? <button class="regbtn" @click="popup()"><a href="?register">Sign up</a></button>
             </div>
         </form>
     </div>

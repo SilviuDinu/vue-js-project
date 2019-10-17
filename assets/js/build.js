@@ -287,39 +287,50 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /* jshint esversion: 6 */
 var NotFound = { template: '<h1 style="text-align: center; margin-top: 10%; font-size: 36px;">404 - Page not found</h1>' };
 var routes = {
-  '/trial_2/index.html': _render_login2.default,
-  '/trial_2/index.html?register': _render_popup2.default
+    '/vue-js-project/': _render_login2.default,
+    '/vue-js-project/index.html': _render_login2.default,
+    '/vue-js-project/index': _render_login2.default,
+    '/vue-js-project/?register': _render_popup2.default,
+    '/vue-js-project/index.html?register': _render_popup2.default,
+    '/vue-js-project/index?register': _render_popup2.default
 };
 
 window.addEventListener('load', function () {
-  if (window.location.pathname !== '/trial_2/dashboard.php') {
-    new _vue2.default({
-      el: '#main',
-      data: {
-        currentRoute: window.location.pathname + window.location.search
-      },
-      computed: {
-        ViewComponent: function ViewComponent() {
-          return routes[this.currentRoute] || NotFound;
-        }
-      },
-      render: function render(h) {
-        return h(this.ViewComponent);
-      }
-    });
-  }
+    if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
+
+        new _vue2.default({
+            el: '#main',
+            data: {
+                currentRoute: window.location.pathname + window.location.hash + window.location.search
+                //currentRoute: window.location.href.replace(/^.*\/\/[^\/]+/, '')
+            },
+            computed: {
+                ViewComponent: function ViewComponent() {
+                    return routes[this.currentRoute] || NotFound;
+                }
+            },
+            // created() {
+            //     window.addEventListener('hashchange', function (routes) {
+            //         console.log('changed');
+            //     });
+            // },
+            render: function render(h) {
+                return h(this.ViewComponent);
+            }
+        });
+    }
 });
 
 window.addEventListener('load', function () {
-  if (window.location.pathname === '/trial_2/dashboard.php') {
-    new _vue2.default({ // eslint-disable-line no-new
-      el: '#app',
-      components: { App: _App2.default },
-      render: function render(h) {
-        return h(_App2.default);
-      }
-    });
-  }
+    if (window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
+        new _vue2.default({ // eslint-disable-line no-new
+            el: '#app',
+            components: { App: _App2.default },
+            render: function render(h) {
+                return h(_App2.default);
+            }
+        });
+    }
 });
 
 /***/ }),
@@ -12978,7 +12989,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
     data: function data() {
-        return {};
+        return {
+            // currentRoute: window.location.pathname + window.location.hash
+        };
     },
 
     methods: {
@@ -12995,7 +13008,7 @@ exports.default = {
         },
         popup: function popup() {
             //window.open('index.html?register', "child", "toolbar=no,scrollbars=no,resizable=no,top=200,left=50%,width=600,height=775,location=no, title=no");
-            window.location.search = '?register';
+            //window.location.pathname + window.location.hash = '/vue-js-project/index.html#register';
         }
     },
     name: 'render_login'
@@ -13018,6 +13031,218 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -13026,7 +13251,7 @@ exports.default = {
 
     methods: {
         logout: function logout() {
-            window.location.pathname = '/trial_2/destroy_session.php';
+            window.location.pathname = '/vue-js-project/destroy_session.php';
         }
 
     },
@@ -13546,10 +13771,7 @@ var render = function() {
   return _c("div", [
     _c(
       "form",
-      {
-        staticClass: "login-form",
-        attrs: { action: "login.php", method: "post" }
-      },
+      { staticClass: "login-form", attrs: { action: "login", method: "post" } },
       [
         _c("h1", [_vm._v("Login")]),
         _vm._v(" "),
@@ -13606,12 +13828,11 @@ var render = function() {
               staticClass: "regbtn",
               on: {
                 click: function($event) {
-                  $event.preventDefault()
                   return _vm.popup()
                 }
               }
             },
-            [_vm._v("Sign up")]
+            [_c("a", { attrs: { href: "?register" } }, [_vm._v("Sign up")])]
           )
         ])
       ]
@@ -13721,7 +13942,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(7)(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.logbtn[data-v-3bfbc1e1]{\r\n    position: absolute;\r\n    z-index: 20000;\n}\r\n", ""]);
 
 
 /***/ }),
@@ -13748,10 +13969,501 @@ var render = function() {
         }
       },
       [_vm._v("Logout")]
-    )
+    ),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark fixed-top",
+        attrs: { id: "mainNav" }
+      },
+      [
+        _c(
+          "a",
+          { staticClass: "navbar-brand", attrs: { href: "index.html" } },
+          [_vm._v("Start Bootstrap")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "navbar-toggler navbar-toggler-right",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#navbarResponsive",
+              "aria-controls": "navbarResponsive",
+              "aria-expanded": "false",
+              "aria-label": "Toggle navigation"
+            }
+          },
+          [_c("span", { staticClass: "navbar-toggler-icon" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarResponsive" }
+          },
+          [
+            _c(
+              "ul",
+              {
+                staticClass: "navbar-nav navbar-sidenav",
+                attrs: { id: "exampleAccordion" }
+              },
+              [
+                _c(
+                  "li",
+                  {
+                    staticClass: "nav-item",
+                    attrs: {
+                      "data-toggle": "tooltip",
+                      "data-placement": "right",
+                      title: "Dashboard"
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { href: "/dashboard" }
+                      },
+                      [
+                        _c("i", { staticClass: "fa fa-fw fa-dashboard" }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "nav-link-text" }, [
+                          _vm._v("Dashboard")
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("ol", { staticClass: "breadcrumb" }, [
+          _c("li", { staticClass: "breadcrumb-item" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Dashboard")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "breadcrumb-item active" }, [
+            _vm._v("My Dashboard")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-3 col-sm-6 mb-3" }, [
+            _c(
+              "div",
+              { staticClass: "card text-white bg-primary o-hidden h-100" },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "card-body-icon" }, [
+                    _c("i", { staticClass: "fa fa-fw fa-comments" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mr-5" }, [
+                    _c("span", { attrs: { id: "message-count" } }, [
+                      _vm._v("26")
+                    ]),
+                    _vm._v(" New Messages!")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "card-footer text-white clearfix small z-1",
+                    attrs: { href: "#" }
+                  },
+                  [
+                    _c("span", { staticClass: "float-left" }, [
+                      _vm._v("View Details")
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _c("i", { staticClass: "fa fa-angle-right" })
+                    ])
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-3 col-sm-6 mb-3" }, [
+            _c(
+              "div",
+              { staticClass: "card text-white bg-warning o-hidden h-100" },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "card-body-icon" }, [
+                    _c("i", { staticClass: "fa fa-fw fa-list" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mr-5" }, [_vm._v("11 New Tasks!")])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "card-footer text-white clearfix small z-1",
+                    attrs: { href: "#" }
+                  },
+                  [
+                    _c("span", { staticClass: "float-left" }, [
+                      _vm._v("View Details")
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _c("i", { staticClass: "fa fa-angle-right" })
+                    ])
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-3 col-sm-6 mb-3" }, [
+            _c(
+              "div",
+              { staticClass: "card text-white bg-success o-hidden h-100" },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "card-body-icon" }, [
+                    _c("i", { staticClass: "fa fa-fw fa-shopping-cart" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mr-5" }, [
+                    _c("span", { attrs: { id: "order-count" } }, [
+                      _vm._v("123")
+                    ]),
+                    _vm._v(" New Orders!")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "card-footer text-white clearfix small z-1",
+                    attrs: { href: "#" }
+                  },
+                  [
+                    _c("span", { staticClass: "float-left" }, [
+                      _vm._v("View Details")
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _c("i", { staticClass: "fa fa-angle-right" })
+                    ])
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-3 col-sm-6 mb-3" }, [
+            _c(
+              "div",
+              { staticClass: "card text-white bg-danger o-hidden h-100" },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "card-body-icon" }, [
+                    _c("i", { staticClass: "fa fa-fw fa-support" })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mr-5" }, [
+                    _vm._v("13 New Tickets!")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "card-footer text-white clearfix small z-1",
+                    attrs: { href: "#" }
+                  },
+                  [
+                    _c("span", { staticClass: "float-left" }, [
+                      _vm._v("View Details")
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "float-right" }, [
+                      _c("i", { staticClass: "fa fa-angle-right" })
+                    ])
+                  ]
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-8" }, [
+            _c("div", { staticClass: "card mb-3" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("i", { staticClass: "fa fa-bar-chart" }),
+                _vm._v(" Revenue Chart")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-8 my-auto" }, [
+                    _c("canvas", {
+                      attrs: { id: "myBarChart", width: "100", height: "50" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-4 text-center my-auto" }, [
+                    _c("div", { staticClass: "h4 mb-0 text-primary" }, [
+                      _vm._v("$34,693")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small text-muted" }, [
+                      _vm._v("YTD Revenue")
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "h4 mb-0 text-warning" }, [
+                      _vm._v("$18,474")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small text-muted" }, [
+                      _vm._v("YTD Expenses")
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "h4 mb-0 text-success" }, [
+                      _vm._v("$16,219")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "small text-muted" }, [
+                      _vm._v("YTD Margin")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer small text-muted" }, [
+                _vm._v("Updated yesterday at 11:59 PM")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c("div", { staticClass: "card mb-3" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("i", { staticClass: "fa fa-bell-o" }),
+                _vm._v(" Message Feed")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "list-group list-group-flush small" }, [
+                _c("div", { attrs: { id: "message-box" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "list-group-item list-group-item-action",
+                      attrs: { href: "#" }
+                    },
+                    [
+                      _c("div", { staticClass: "media" }, [
+                        _c("img", {
+                          staticClass: "d-flex mr-3 rounded-circle",
+                          attrs: { src: "http://placehold.it/45x45", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "media-body" }, [
+                          _c("strong", [_vm._v("Jeffery Wellings")]),
+                          _vm._v(
+                            "added a new photo to the album\n                                            "
+                          ),
+                          _c("strong", [_vm._v("Beach")]),
+                          _vm._v(
+                            ".\n                                            "
+                          ),
+                          _c("div", { staticClass: "text-muted smaller" }, [
+                            _vm._v("Today at 4:31 PM - 1hr ago")
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "list-group-item list-group-item-action",
+                      attrs: { href: "#" }
+                    },
+                    [
+                      _c("div", { staticClass: "media" }, [
+                        _c("img", {
+                          staticClass: "d-flex mr-3 rounded-circle",
+                          attrs: { src: "http://placehold.it/45x45", alt: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "media-body" }, [
+                          _c("i", { staticClass: "fa fa-code-fork" }),
+                          _vm._v(" "),
+                          _c("strong", [_vm._v("Monica Dennis")]),
+                          _vm._v(
+                            "forked the\n                                            "
+                          ),
+                          _c("strong", [_vm._v("startbootstrap-sb-admin")]),
+                          _vm._v(
+                            "repository on\n                                            "
+                          ),
+                          _c("strong", [_vm._v("GitHub")]),
+                          _vm._v(
+                            ".\n                                            "
+                          ),
+                          _c("div", { staticClass: "text-muted smaller" }, [
+                            _vm._v("Today at 3:54 PM - 2hrs ago")
+                          ])
+                        ])
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "list-group-item list-group-item-action",
+                    attrs: { href: "#" }
+                  },
+                  [_vm._v("View all activity...")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-footer small text-muted" }, [
+                _vm._v("Updated yesterday at 11:59 PM")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card mb-3" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("i", { staticClass: "fa fa-table" }),
+            _vm._v(" Customer Order Record")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass: "table table-bordered",
+                  attrs: { id: "dataTable", width: "100%", cellspacing: "0" }
+                },
+                [
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Position")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Office")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Age")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Start date")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Salary")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tfoot", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Position")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Office")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Age")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Start date")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Salary")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tbody", { attrs: { id: "customer-table" } }, [
+                    _c("tr", [
+                      _c("td", [_vm._v("Cedric Kelly")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("Senior Javascript Developer")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("Edinburgh")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("22")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("2012/03/29")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("$433,060")])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Airi Satou")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("Accountant")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("Tokyo")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("33")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("2008/11/28")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("$162,700")])
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer small text-muted" }, [
+            _vm._v("Updated yesterday at 11:59 PM")
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("footer", { staticClass: "sticky-footer" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "text-center" }, [
+            _c("small", [_vm._v("Copyright © Your Website 2018")])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {

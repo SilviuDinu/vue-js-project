@@ -1,2 +1,6 @@
-RewriteEngine On
-RewriteRule ^index\.(php|html?)$ http://localhost/trial_2 [R=301,L]
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $2.php [NC,L]

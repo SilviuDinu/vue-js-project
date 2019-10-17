@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!defined('ALLOW')){
-    header('Location: index.html');
+    header('Location: index');
 }
 try {
     $mysqli = new mysqli("localhost", "root", "");
