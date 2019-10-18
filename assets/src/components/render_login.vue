@@ -13,6 +13,8 @@
                 if(loginForm.style.display === '' || loginForm.style.display === 'block'){
                     jQuery( loginForm ).fadeOut(600);
                     jQuery( regForm ).fadeIn(600);
+                    // jQuery( loginForm ).slideUp(500).delay(200);
+                    // jQuery( regForm ).slideDown();
                 }
 
             },
@@ -22,6 +24,8 @@
                 if(loginForm.style.display === 'none'){
                     jQuery( regForm ).fadeOut(600);
                     jQuery( loginForm ).fadeIn(600);
+                    // jQuery( regForm ).slideUp().delay(200);
+                    // jQuery( loginForm ).slideDown(500);
                 }
             },
             rise: function () {
