@@ -9,8 +9,14 @@
         methods: {
             register: function () {
                 const card = document.querySelector('div.flip-card-child');
-                const front = document.querySelector('div.flip-card-front');
                 card.classList.toggle('flipped');
+                const front = document.querySelector('div.flip-card-front');
+                const back = document.querySelector('div.flip-card-back');
+                if (back.style.backfaceVisibility === 'hidden') {
+                    back.style.backfaceVisibility = 'visible';
+                } else if (back.style.backfaceVisibility === 'visible') {
+                    back.style.backfaceVisibility = 'hidden';
+                }
             },
             rise: function () {
                 event.target.classList.add('focus');
@@ -31,7 +37,7 @@
     <div class="flip-card-parent">
         <div class="flip-card-child">
             <div class="flip-card-front">
-                <form id="login" action="login" class="login-form" method="post" >
+                <form id="login" action="login" class="login-form" method="post">
                     <h1>Login</h1>
                     <div class="txtb">
                         <input type="text" name="username_login" pattern="[A-Za-z0-9]+" @focus="rise()" @blur="fall()">
@@ -52,7 +58,7 @@
                     </div>
                 </form>
             </div>
-            <div class="flip-card-back">
+            <div class="flip-card-back" style="backface-visibility: hidden">
                 <form id="register" action="register" class="register-form" method="post">
                     <h1>Register</h1>
                     <div class="txtb">
