@@ -12426,24 +12426,9 @@ exports.default = {
 
     methods: {
         register: function register() {
-            var loginForm = document.querySelector('form#login');
-            var regForm = document.querySelector('form#register');
-            if (loginForm.style.display === '' || loginForm.style.display === 'block') {
-                jQuery(loginForm).fadeOut(600);
-                jQuery(regForm).fadeIn(600);
-                // jQuery( loginForm ).slideUp(500).delay(200);
-                // jQuery( regForm ).slideDown();
-            }
-        },
-        backToLogin: function backToLogin() {
-            var loginForm = document.querySelector('form#login');
-            var regForm = document.querySelector('form#register');
-            if (loginForm.style.display === 'none') {
-                jQuery(regForm).fadeOut(600);
-                jQuery(loginForm).fadeIn(600);
-                // jQuery( regForm ).slideUp().delay(200);
-                // jQuery( loginForm ).slideDown(500);
-            }
+            var card = document.querySelector('div.flip-card-child');
+            var front = document.querySelector('div.flip-card-front');
+            card.classList.toggle('flipped');
         },
         rise: function rise() {
             event.target.classList.add('focus');
@@ -13147,195 +13132,205 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        staticClass: "login-form",
-        attrs: { id: "login", action: "login", method: "post" }
-      },
-      [
-        _c("h1", [_vm._v("Login")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "text",
-              name: "username_login",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Username" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "password",
-              name: "password_login",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Password" } })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "logbtn",
-          attrs: { type: "submit", value: "Login" }
-        }),
-        _vm._v(" "),
+  return _c("div", { staticClass: "flip-card-parent" }, [
+    _c("div", { staticClass: "flip-card-child" }, [
+      _c("div", { staticClass: "flip-card-front" }, [
         _c(
-          "div",
-          { staticClass: "bottom-text", staticStyle: { "font-size": "16px" } },
+          "form",
+          {
+            staticClass: "login-form",
+            attrs: { id: "login", action: "login", method: "post" }
+          },
           [
-            _vm._v("\n            Don't have account?\n            "),
-            _c(
-              "button",
-              {
-                staticClass: "regbtn",
+            _c("h1", [_vm._v("Login")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "txtb" }, [
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "username_login",
+                  pattern: "[A-Za-z0-9]+"
+                },
                 on: {
-                  click: function($event) {
-                    return _vm.register()
+                  focus: function($event) {
+                    return _vm.rise()
+                  },
+                  blur: function($event) {
+                    return _vm.fall()
                   }
                 }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "data-placeholder": "Username" } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "txtb" }, [
+              _c("input", {
+                attrs: {
+                  type: "password",
+                  name: "password_login",
+                  pattern: "[A-Za-z0-9]+"
+                },
+                on: {
+                  focus: function($event) {
+                    return _vm.rise()
+                  },
+                  blur: function($event) {
+                    return _vm.fall()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "data-placeholder": "Password" } })
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "logbtn",
+              attrs: { type: "submit", value: "Login" }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "bottom-text",
+                staticStyle: { "font-size": "16px" }
               },
               [
+                _vm._v(
+                  "\n                    Don't have account?\n                    "
+                ),
                 _c(
-                  "a",
+                  "button",
                   {
-                    staticStyle: { "font-size": "16px" },
-                    attrs: { href: "#register" }
+                    staticClass: "regbtn",
+                    on: {
+                      click: function($event) {
+                        return _vm.register()
+                      }
+                    }
                   },
-                  [_vm._v("Sign up")]
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticStyle: { "font-size": "16px" },
+                        attrs: { href: "#register" }
+                      },
+                      [_vm._v("Sign\n                        up")]
+                    )
+                  ]
                 )
               ]
             )
           ]
         )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "register-form",
-        staticStyle: { display: "none" },
-        attrs: { id: "register", action: "register", method: "post" }
-      },
-      [
-        _c("h1", [_vm._v("Register")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "text",
-              required: "",
-              name: "username_register",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Username" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "password",
-              required: "",
-              name: "password_register",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Password" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "email",
-              required: "",
-              name: "email_register",
-              pattern: "[A-Za-z0-9-_@.]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Email" } })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "logbtn",
-          attrs: { type: "submit", value: "Register" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "bottom-text" }, [
-          _c(
-            "button",
-            {
-              staticClass: "regbtn",
-              on: {
-                click: function($event) {
-                  return _vm.backToLogin()
-                }
-              }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticStyle: { "font-size": "16px" },
-                  attrs: { href: "#login" }
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flip-card-back" }, [
+        _c(
+          "form",
+          {
+            staticClass: "register-form",
+            attrs: { id: "register", action: "register", method: "post" }
+          },
+          [
+            _c("h1", [_vm._v("Register")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "txtb" }, [
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  required: "",
+                  name: "username_register",
+                  pattern: "[A-Za-z0-9]+"
                 },
-                [_vm._v("← Back to Login")]
+                on: {
+                  focus: function($event) {
+                    return _vm.rise()
+                  },
+                  blur: function($event) {
+                    return _vm.fall()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "data-placeholder": "Username" } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "txtb" }, [
+              _c("input", {
+                attrs: {
+                  type: "password",
+                  required: "",
+                  name: "password_register",
+                  pattern: "[A-Za-z0-9]+"
+                },
+                on: {
+                  focus: function($event) {
+                    return _vm.rise()
+                  },
+                  blur: function($event) {
+                    return _vm.fall()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "data-placeholder": "Password" } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "txtb" }, [
+              _c("input", {
+                attrs: {
+                  type: "email",
+                  required: "",
+                  name: "email_register",
+                  pattern: "[A-Za-z0-9-_@.]+"
+                },
+                on: {
+                  focus: function($event) {
+                    return _vm.rise()
+                  },
+                  blur: function($event) {
+                    return _vm.fall()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "data-placeholder": "Email" } })
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "logbtn",
+              attrs: { type: "submit", value: "Register" }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "bottom-text" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "regbtn",
+                  on: {
+                    click: function($event) {
+                      return _vm.register()
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticStyle: { "font-size": "16px" },
+                      attrs: { href: "#login" }
+                    },
+                    [_vm._v("←\n                        Back to Login")]
+                  )
+                ]
               )
-            ]
-          )
-        ])
-      ]
-    )
+            ])
+          ]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
