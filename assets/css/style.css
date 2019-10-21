@@ -200,3 +200,9 @@ form#login, form#register {
     left: 50%;
     top: 50%;
 }
+
+input.focus{
+    width: 90%;
+    overflow: hidden;
+    text-overflow: clip;
+}
