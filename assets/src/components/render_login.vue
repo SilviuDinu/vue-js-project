@@ -28,6 +28,16 @@
                     event.target.parentNode.classList.remove("focused");
                 }
             },
+            preview: function () {
+                const x = event.target.parentNode.previousElementSibling;
+                if (x.type === "password") {
+                    event.target.classList.replace("fa-eye", "fa-eye-slash");
+                    x.type = "text";
+                } else if(x.type === "text") {
+                    event.target.classList.replace("fa-eye-slash", "fa-eye");
+                    x.type = "password";
+                }
+            }
         },
         name: 'render_login'
     }
@@ -47,7 +57,8 @@
                     <div class="txtb">
                         <input type="password" name="password_login" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
-                        <span data-placeholder="Password"></span>
+
+                        <span data-placeholder="Password"><i class="fa fa-eye" @click="preview()"></i></span>
                     </div>
                     <input type="submit" class="logbtn" value="Login">
 

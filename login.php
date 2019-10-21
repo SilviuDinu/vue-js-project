@@ -16,8 +16,8 @@ if (isset($_POST["username_login"]) && isset($_POST["password_login"])) {
     $check = mysqli_query($con, "SELECT username from users where username='$username_login' and password='$password_login'");
     if ($check->num_rows !== 0) {
         $_SESSION['loggedIn'] = true;
-        //$_SESSION['failed'] = false;
-        header('Location: dashboard.php');
+        $_SESSION['failed'] = false;
+        header('Location: dashboard');
         //set the session on the login page
     } else if ($check->num_rows === 0) {
         $_SESSION['loggedIn'] = false;

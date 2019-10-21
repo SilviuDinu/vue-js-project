@@ -16,6 +16,14 @@
     font-family: montserrat;
     box-sizing: border-box;
 }
+i.fa.fa-eye, i.fa.fa-eye-slash {
+    float: right;
+    position: absolute;
+    top: 35%;
+    font-size: 20px;
+    right: 0;
+    cursor: pointer;
+}
 
 body {
     min-height: 100vh;
@@ -172,6 +180,9 @@ form#login, form#register {
 
 .flip-card-parent {
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 .flipped {
@@ -187,5 +198,5 @@ form#login, form#register {
     transition: transform 0.6s ease-out;
     transform-style: preserve-3d;
     left: 50%;
-    margin-top: 23%;
+    top: 50%;
 }

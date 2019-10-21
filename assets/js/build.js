@@ -12445,6 +12445,16 @@ exports.default = {
                 event.target.classList.remove('focus');
                 event.target.parentNode.classList.remove("focused");
             }
+        },
+        preview: function preview() {
+            var x = event.target.parentNode.previousElementSibling;
+            if (x.type === "password") {
+                event.target.classList.replace("fa-eye", "fa-eye-slash");
+                x.type = "text";
+            } else if (x.type === "text") {
+                event.target.classList.replace("fa-eye-slash", "fa-eye");
+                x.type = "password";
+            }
         }
     },
     name: 'render_login'
@@ -13187,7 +13197,16 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("span", { attrs: { "data-placeholder": "Password" } })
+              _c("span", { attrs: { "data-placeholder": "Password" } }, [
+                _c("i", {
+                  staticClass: "fa fa-eye",
+                  on: {
+                    click: function($event) {
+                      return _vm.preview()
+                    }
+                  }
+                })
+              ])
             ]),
             _vm._v(" "),
             _c("input", {
