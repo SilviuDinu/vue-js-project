@@ -24,6 +24,12 @@ session_abort();
     <script src="http://use.fontawesome.com/2f39677d1c.js"></script>
 </head>
 <body>
+<div class="loading">
+    <h2>
+        <pre>  Loading...</pre>
+    </h2>
+    <div class="loader"></div>
+</div>
 <div id="main"></div>
 </body>
 </html>

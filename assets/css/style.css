@@ -201,6 +201,37 @@ form#login, form#register {
     top: 50%;
 }
 
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 30005;
+}
+
+.loader {
+    border: 8px solid #fff;
+    border-radius: 50%;
+    border-top: 8px solid blue;
+    width: 45px;
+    height: 45px;
+    margin: 15px auto;
+    text-align: center;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 input.focus{
     width: 90%;
     overflow: hidden;
