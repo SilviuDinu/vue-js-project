@@ -12425,6 +12425,20 @@ exports.default = {
     },
 
     methods: {
+        validation: function validation() {
+
+            var loginData = {
+                "username": document.querySelector('form#login input[type=text]').value,
+                "password": document.querySelector('form#login input[type=password]').value
+            };
+            console.log(loginData);
+            console.log(loginData.username);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", window.location.origin + "/vue-js-project/login");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(loginData));
+        },
         register: function register() {
             var card = document.querySelector('div.flip-card-child');
             card.classList.toggle('flipped');
@@ -12733,7 +12747,7 @@ var _dashboard2 = _interopRequireDefault(_dashboard);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.addEventListener('load', function () {
-    document.querySelector('div.overlay').remove();
+    if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
     if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#main',
@@ -13212,7 +13226,13 @@ var render = function() {
             _vm._v(" "),
             _c("input", {
               staticClass: "logbtn",
-              attrs: { type: "submit", value: "Login" }
+              attrs: { type: "submit", value: "Login" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.validation()
+                }
+              }
             }),
             _vm._v(" "),
             _c(

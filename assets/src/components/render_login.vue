@@ -7,6 +7,20 @@
             }
         },
         methods: {
+            validation: function() {
+
+                var loginData = {
+                    "username": document.querySelector('form#login input[type=text]').value,
+                    "password": document.querySelector('form#login input[type=password]').value,
+                };
+                console.log(loginData);
+                console.log(loginData.username);
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("POST", window.location.origin + "/vue-js-project/login");
+                xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhttp.send(JSON.stringify(loginData));
+            },
             register: function () {
                 const card = document.querySelector('div.flip-card-child');
                 card.classList.toggle('flipped');
@@ -60,7 +74,7 @@
 
                         <span data-placeholder="Password"><i class="fa fa-eye" @click="preview()"></i></span>
                     </div>
-                    <input type="submit" class="logbtn" value="Login">
+                    <input type="submit" class="logbtn" @click.prevent="validation()" value="Login">
 
                     <div style="font-size: 16px" class="bottom-text">
                         Don't have account?

@@ -5,7 +5,7 @@ import dashboard from "./components/dashboard.vue";
 
 
 window.addEventListener('load', function () {
-    document.querySelector('div.overlay').remove();
+    if(document.querySelector('div.overlay'))  document.querySelector('div.overlay').remove();
     if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
         new Vue({ // eslint-disable-line no-new
             el: '#main',
@@ -26,8 +26,7 @@ window.addEventListener('load', function () {
 });
 
 if(window.location.search === '?fail') {
-    var msg = document.querySelector(".alert-fail");
+    const msg = document.querySelector(".alert-fail");
     jQuery(msg).slideDown().delay(3000).slideUp();
 }
-
 
