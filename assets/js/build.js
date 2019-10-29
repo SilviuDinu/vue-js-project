@@ -12420,7 +12420,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     data: function data() {
         return {
-            getCurrentRoute: window.location.pathname + window.location.hash + window.location.search
+            counter: 0
         };
     },
 
@@ -12468,6 +12468,13 @@ exports.default = {
             } else if (x.type === "text") {
                 event.target.classList.replace("fa-eye-slash", "fa-eye");
                 x.type = "password";
+            }
+        },
+        easteregg: function easteregg() {
+            this.counter++;
+            if (this.counter === 5) {
+                window.open('./eastereggs/snake.html', "", "width=450,height=500");
+                this.counter = 0;
             }
         }
     },
@@ -13286,7 +13293,7 @@ var render = function() {
               attrs: { id: "register", action: "register", method: "post" }
             },
             [
-              _c("h1", [_vm._v("Register")]),
+              _c("h1", { on: { click: _vm.easteregg } }, [_vm._v("Register")]),
               _vm._v(" "),
               _c("div", { staticClass: "txtb" }, [
                 _c("input", {

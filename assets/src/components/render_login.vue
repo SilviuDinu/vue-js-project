@@ -3,8 +3,9 @@
     export default {
         data() {
             return {
-                getCurrentRoute: window.location.pathname + window.location.hash + window.location.search
+                counter: 0
             }
+
         },
         methods: {
             validation: function() {
@@ -51,6 +52,13 @@
                     event.target.classList.replace("fa-eye-slash", "fa-eye");
                     x.type = "password";
                 }
+            },
+            easteregg: function () {
+                this.counter++;
+                if(this.counter === 5) {
+                    window.open('./eastereggs/snake.html', "", "width=450,height=500");
+                    this.counter = 0;
+                }
             }
         },
         name: 'render_login'
@@ -85,7 +93,7 @@
             </div>
             <div class="flip-card-back" style="backface-visibility: hidden">
                 <form id="register" action="register" class="register-form" method="post">
-                    <h1>Register</h1>
+                    <h1 @click="easteregg">Register</h1>
                     <div class="txtb">
                         <input type="text" required name="username_register" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
