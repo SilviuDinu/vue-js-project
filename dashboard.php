@@ -15,11 +15,13 @@ session_abort();
     <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<div class="loading">
-    <h2>
-        <pre>  Loading...</pre>
-    </h2>
-    <div class="loader"></div>
+<div class="overlay">
+    <div class="loading">
+        <h2>
+            <pre>  Loading...</pre>
+        </h2>
+        <div class="loader"></div>
+    </div>
 </div>
 <div id="app"></div>
 </body>

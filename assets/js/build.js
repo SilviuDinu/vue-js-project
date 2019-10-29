@@ -12733,7 +12733,7 @@ var _dashboard2 = _interopRequireDefault(_dashboard);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.addEventListener('load', function () {
-    document.querySelector('div.loading').remove();
+    document.querySelector('div.overlay').remove();
     if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#main',
@@ -12747,7 +12747,7 @@ window.addEventListener('load', function () {
 
 
 window.addEventListener('load', function () {
-    if (!document.querySelector('div.loading') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
+    if (!document.querySelector('div.overlay') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#app',
             components: { dashboard: _dashboard2.default },
