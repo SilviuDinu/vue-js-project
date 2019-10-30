@@ -12420,29 +12420,34 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     data: function data() {
         return {
-            getCurrentRoute: window.location.pathname + window.location.hash + window.location.search
+            counter: 0
         };
     },
 
     methods: {
-        register: function register() {
-            var loginForm = document.querySelector('form#login');
-            var regForm = document.querySelector('form#register');
-            if (loginForm.style.display === '' || loginForm.style.display === 'block') {
-                jQuery(loginForm).fadeOut(600);
-                jQuery(regForm).fadeIn(600);
-                // jQuery( loginForm ).slideUp(500).delay(200);
-                // jQuery( regForm ).slideDown();
-            }
+        validation: function validation() {
+
+            var loginData = {
+                "username": document.querySelector('form#login input[type=text]').value,
+                "password": document.querySelector('form#login input[type=password]').value
+            };
+            console.log(loginData);
+            console.log(loginData.username);
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", window.location.origin + "/vue-js-project/login");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(loginData));
         },
-        backToLogin: function backToLogin() {
-            var loginForm = document.querySelector('form#login');
-            var regForm = document.querySelector('form#register');
-            if (loginForm.style.display === 'none') {
-                jQuery(regForm).fadeOut(600);
-                jQuery(loginForm).fadeIn(600);
-                // jQuery( regForm ).slideUp().delay(200);
-                // jQuery( loginForm ).slideDown(500);
+        register: function register() {
+            var card = document.querySelector('div.flip-card-child');
+            card.classList.toggle('flipped');
+            var front = document.querySelector('div.flip-card-front');
+            var back = document.querySelector('div.flip-card-back');
+            if (back.style.backfaceVisibility === 'hidden') {
+                back.style.backfaceVisibility = 'visible';
+            } else if (back.style.backfaceVisibility === 'visible') {
+                back.style.backfaceVisibility = 'hidden';
             }
         },
         rise: function rise() {
@@ -12454,6 +12459,29 @@ exports.default = {
                 event.target.classList.remove('focus');
                 event.target.parentNode.classList.remove("focused");
             }
+        },
+        preview: function preview() {
+            var x = event.target.parentNode.previousElementSibling;
+            if (x.type === "password") {
+                event.target.classList.replace("fa-eye", "fa-eye-slash");
+                x.type = "text";
+            } else if (x.type === "text") {
+                event.target.classList.replace("fa-eye-slash", "fa-eye");
+                x.type = "password";
+            }
+        },
+        easteregg: function easteregg() {
+            this.counter++;
+            if (this.counter >= 3) {
+                event.target.innerHTML = 5 - this.counter + " clicks away. . .";
+            }
+            if (this.counter === 5) {
+                window.open('./eastereggs/snake.html', "", "width=420,height=500");
+                event.target.innerHTML = "Register";
+                event.target.classList.remove("pulse");
+            }
+            if (this.counter < 5) event.target.classList.add("pulse");
+            if (this.counter >= 5) this.counter = 0;
         }
     },
     name: 'render_login'
@@ -12732,6 +12760,7 @@ var _dashboard2 = _interopRequireDefault(_dashboard);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.addEventListener('load', function () {
+    if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
     if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#main',
@@ -12745,7 +12774,7 @@ window.addEventListener('load', function () {
 
 
 window.addEventListener('load', function () {
-    if (window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
+    if (!document.querySelector('div.overlay') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#app',
             components: { dashboard: _dashboard2.default },
@@ -13092,6 +13121,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e9ab117a_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_render_login_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
 var disposed = false
+function injectStyle (context) {
+  if (disposed) return
+  __webpack_require__(22)
+}
 /* script */
 
 
@@ -13100,7 +13133,7 @@ var disposed = false
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -13147,195 +13180,234 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      {
-        staticClass: "login-form",
-        attrs: { id: "login", action: "login", method: "post" }
-      },
-      [
-        _c("h1", [_vm._v("Login")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "text",
-              name: "username_login",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Username" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "password",
-              name: "password_login",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Password" } })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "logbtn",
-          attrs: { type: "submit", value: "Login" }
-        }),
-        _vm._v(" "),
+  return _c("div", { staticClass: "flip-card-parent" }, [
+    _c("div", { staticClass: "flip-card-child" }, [
+      _c("div", { staticClass: "flip-card-front" }, [
         _c(
-          "div",
-          { staticClass: "bottom-text", staticStyle: { "font-size": "16px" } },
+          "form",
+          {
+            staticClass: "login-form",
+            attrs: { id: "login", action: "login", method: "post" }
+          },
           [
-            _vm._v("\n            Don't have account?\n            "),
-            _c(
-              "button",
-              {
-                staticClass: "regbtn",
+            _c("h1", [_vm._v("Login")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "txtb" }, [
+              _c("input", {
+                attrs: {
+                  type: "text",
+                  name: "username_login",
+                  pattern: "[A-Za-z0-9]+"
+                },
                 on: {
-                  click: function($event) {
-                    return _vm.register()
+                  focus: function($event) {
+                    return _vm.rise()
+                  },
+                  blur: function($event) {
+                    return _vm.fall()
                   }
                 }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "data-placeholder": "Username" } })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "txtb" }, [
+              _c("input", {
+                attrs: {
+                  type: "password",
+                  name: "password_login",
+                  pattern: "[A-Za-z0-9]+"
+                },
+                on: {
+                  focus: function($event) {
+                    return _vm.rise()
+                  },
+                  blur: function($event) {
+                    return _vm.fall()
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "data-placeholder": "Password" } }, [
+                _c("i", {
+                  staticClass: "fa fa-eye",
+                  on: {
+                    click: function($event) {
+                      return _vm.preview()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "logbtn",
+              attrs: { type: "submit", value: "Login" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.validation()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "bottom-text",
+                staticStyle: { "font-size": "16px" }
               },
               [
+                _vm._v(
+                  "\n                    Don't have account?\n                    "
+                ),
                 _c(
-                  "a",
+                  "button",
                   {
-                    staticStyle: { "font-size": "16px" },
-                    attrs: { href: "#register" }
+                    staticClass: "regbtn",
+                    on: {
+                      click: function($event) {
+                        return _vm.register()
+                      }
+                    }
                   },
-                  [_vm._v("Sign up")]
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticStyle: { "font-size": "16px" },
+                        attrs: { href: "#register" }
+                      },
+                      [_vm._v("Sign\n                        up")]
+                    )
+                  ]
                 )
               ]
             )
           ]
         )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "register-form",
-        staticStyle: { display: "none" },
-        attrs: { id: "register", action: "register", method: "post" }
-      },
-      [
-        _c("h1", [_vm._v("Register")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "text",
-              required: "",
-              name: "username_register",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Username" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "password",
-              required: "",
-              name: "password_register",
-              pattern: "[A-Za-z0-9]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Password" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "txtb" }, [
-          _c("input", {
-            attrs: {
-              type: "email",
-              required: "",
-              name: "email_register",
-              pattern: "[A-Za-z0-9-_@.]+"
-            },
-            on: {
-              focus: function($event) {
-                return _vm.rise()
-              },
-              blur: function($event) {
-                return _vm.fall()
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { attrs: { "data-placeholder": "Email" } })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "logbtn",
-          attrs: { type: "submit", value: "Register" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "bottom-text" }, [
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "flip-card-back",
+          staticStyle: { "backface-visibility": "hidden" }
+        },
+        [
           _c(
-            "button",
+            "form",
             {
-              staticClass: "regbtn",
-              on: {
-                click: function($event) {
-                  return _vm.backToLogin()
-                }
-              }
+              staticClass: "register-form",
+              attrs: { id: "register", action: "register", method: "post" }
             },
             [
               _c(
-                "a",
+                "h1",
                 {
-                  staticStyle: { "font-size": "16px" },
-                  attrs: { href: "#login" }
+                  staticStyle: { cursor: "crosshair" },
+                  on: { click: _vm.easteregg }
                 },
-                [_vm._v("← Back to Login")]
-              )
+                [_vm._v("Register")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "txtb" }, [
+                _c("input", {
+                  attrs: {
+                    type: "text",
+                    required: "",
+                    name: "username_register",
+                    pattern: "[A-Za-z0-9]+"
+                  },
+                  on: {
+                    focus: function($event) {
+                      return _vm.rise()
+                    },
+                    blur: function($event) {
+                      return _vm.fall()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { attrs: { "data-placeholder": "Username" } })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "txtb" }, [
+                _c("input", {
+                  attrs: {
+                    type: "password",
+                    required: "",
+                    name: "password_register",
+                    pattern: "[A-Za-z0-9]+"
+                  },
+                  on: {
+                    focus: function($event) {
+                      return _vm.rise()
+                    },
+                    blur: function($event) {
+                      return _vm.fall()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { attrs: { "data-placeholder": "Password" } })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "txtb" }, [
+                _c("input", {
+                  attrs: {
+                    type: "email",
+                    required: "",
+                    name: "email_register",
+                    pattern: "[A-Za-z0-9-_@.]+"
+                  },
+                  on: {
+                    focus: function($event) {
+                      return _vm.rise()
+                    },
+                    blur: function($event) {
+                      return _vm.fall()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { attrs: { "data-placeholder": "Email" } })
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "logbtn",
+                attrs: { type: "submit", value: "Register" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "bottom-text" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "regbtn",
+                    on: {
+                      click: function($event) {
+                        return _vm.register()
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticStyle: { "font-size": "16px" },
+                        attrs: { href: "#login" }
+                      },
+                      [_vm._v("←\n                        Back to Login")]
+                    )
+                  ]
+                )
+              ])
             ]
           )
-        ])
-      ]
-    )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -14357,6 +14429,42 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3bfbc1e1", { render: render, staticRenderFns: staticRenderFns })
   }
 }
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(23);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(19).default
+var update = add("6c13e2e1", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./render_login.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./render_login.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(18)(false);
+// Module
+exports.push([module.i, "\n@keyframes pulse_animation {\n0% { transform: scale(1);\n}\n30% { transform: scale(1);\n}\n40% { transform: scale(1.25);\n}\n50% { transform: scale(1);\n}\n60% { transform: scale(1);\n}\n70% { transform: scale(1.25);\n}\n80% { transform: scale(1);\n}\n100% { transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
+
 
 /***/ })
 /******/ ]);
