@@ -1,8 +1,13 @@
 <div style="max-height: 420px">
-    <h1>Press any key to start</h1>
+    <h1>Press arrow key to start</h1>
     <canvas id="playground" width="400" height="400"></canvas>
 </div>
-
+<style>
+    h1{
+        text-align: center;
+        font-family: Montserrat;
+    }
+</style>
 <script>
     px = py = 10;
     gridSize = tileCount = 20;
@@ -10,6 +15,7 @@
     xSpeed = ySpeed = 0;
     trail = [];
     tail = 5;
+    lost = 0;
     window.onload = function () {
         canvas = document.getElementById("playground");
         context = canvas.getContext("2d");

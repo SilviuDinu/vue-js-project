@@ -55,10 +55,16 @@
             },
             easteregg: function () {
                 this.counter++;
-                if(this.counter === 5) {
-                    window.open('./eastereggs/snake.html', "", "width=450,height=500");
-                    this.counter = 0;
+                if(this.counter >= 3){
+                    event.target.innerHTML = 5 - this.counter + " clicks away. . .";
                 }
+                if(this.counter === 5) {
+                    window.open('./eastereggs/snake.html', "", "width=420,height=500");
+                    event.target.innerHTML = "Register";
+                    event.target.classList.remove("pulse");
+                }
+                if(this.counter < 5) event.target.classList.add("pulse");
+                if(this.counter >= 5) this.counter = 0;
             }
         },
         name: 'render_login'
@@ -93,7 +99,7 @@
             </div>
             <div class="flip-card-back" style="backface-visibility: hidden">
                 <form id="register" action="register" class="register-form" method="post">
-                    <h1 @click="easteregg">Register</h1>
+                    <h1 @click="easteregg" style="cursor: crosshair">Register</h1>
                     <div class="txtb">
                         <input type="text" required name="username_register" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
@@ -121,3 +127,22 @@
         </div>
     </div>
 </template>
+
+<style>
+    @keyframes pulse_animation {
+        0% { transform: scale(1); }
+        30% { transform: scale(1); }
+        40% { transform: scale(1.25); }
+        50% { transform: scale(1); }
+        60% { transform: scale(1); }
+        70% { transform: scale(1.25); }
+        80% { transform: scale(1); }
+        100% { transform: scale(1); }
+    }
+    .pulse {
+        animation-name: pulse_animation;
+        animation-duration: 1500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    </style>
