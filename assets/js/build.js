@@ -12472,10 +12472,16 @@ exports.default = {
         },
         easteregg: function easteregg() {
             this.counter++;
-            if (this.counter === 5) {
-                window.open('./eastereggs/snake.html', "", "width=450,height=500");
-                this.counter = 0;
+            if (this.counter >= 3) {
+                event.target.innerHTML = 5 - this.counter + " clicks away. . .";
             }
+            if (this.counter === 5) {
+                window.open('./eastereggs/snake.html', "", "width=420,height=500");
+                event.target.innerHTML = "Register";
+                event.target.classList.remove("pulse");
+            }
+            if (this.counter < 5) event.target.classList.add("pulse");
+            if (this.counter >= 5) this.counter = 0;
         }
     },
     name: 'render_login'
@@ -13115,6 +13121,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e9ab117a_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_render_login_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
 var disposed = false
+function injectStyle (context) {
+  if (disposed) return
+  __webpack_require__(22)
+}
 /* script */
 
 
@@ -13123,7 +13133,7 @@ var disposed = false
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -13293,7 +13303,14 @@ var render = function() {
               attrs: { id: "register", action: "register", method: "post" }
             },
             [
-              _c("h1", { on: { click: _vm.easteregg } }, [_vm._v("Register")]),
+              _c(
+                "h1",
+                {
+                  staticStyle: { cursor: "crosshair" },
+                  on: { click: _vm.easteregg }
+                },
+                [_vm._v("Register")]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "txtb" }, [
                 _c("input", {
@@ -14412,6 +14429,42 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-3bfbc1e1", { render: render, staticRenderFns: staticRenderFns })
   }
 }
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(23);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(19).default
+var update = add("6c13e2e1", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./render_login.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./render_login.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(18)(false);
+// Module
+exports.push([module.i, "\n@keyframes pulse_animation {\n0% { transform: scale(1);\n}\n30% { transform: scale(1);\n}\n40% { transform: scale(1.25);\n}\n50% { transform: scale(1);\n}\n60% { transform: scale(1);\n}\n70% { transform: scale(1.25);\n}\n80% { transform: scale(1);\n}\n100% { transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
+
 
 /***/ })
 /******/ ]);
