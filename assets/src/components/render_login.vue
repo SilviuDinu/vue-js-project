@@ -8,31 +8,15 @@
 
         },
         methods: {
-            validatePasswd: function(){
+            validatePasswd: function () {
                 const firstPasswordField = document.querySelector('form#register input[type=password]').value;
-                if(event.target.value && event.target.value !== firstPasswordField) {
+                if (event.target.value && event.target.value !== firstPasswordField) {
                     document.getElementById('message').style.color = 'red';
                     document.getElementById('message').innerHTML = "&#10005; Passwords don't match";
-                }
-                else if(event.target.value && event.target.value === firstPasswordField){
+                } else if (event.target.value && event.target.value === firstPasswordField) {
                     document.getElementById('message').style.color = 'green';
                     document.getElementById('message').innerHTML = "&#10003; Perfect match";
                 }
-            },
-            validation: function() {
-
-                var loginData = {
-                    "username": document.querySelector('form#login input[type=text]').value,
-                    "password": document.querySelector('form#login input[type=password]').value,
-                };
-                // console.log(loginData);
-                // console.log(loginData.username);
-
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", window.location.origin + "/vue-js-project/login.php");
-                xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                xhttp.send(JSON.stringify(loginData));
-                // console.log(JSON.stringify(loginData));
             },
             register: function () {
                 const card = document.querySelector('div.flip-card-child');
@@ -60,23 +44,23 @@
                 if (x.type === "password") {
                     event.target.classList.replace("fa-eye", "fa-eye-slash");
                     x.type = "text";
-                } else if(x.type === "text") {
+                } else if (x.type === "text") {
                     event.target.classList.replace("fa-eye-slash", "fa-eye");
                     x.type = "password";
                 }
             },
             easteregg: function () {
                 this.counter++;
-                if(this.counter >= 3){
+                if (this.counter >= 3) {
                     event.target.innerHTML = 5 - this.counter + " clicks away. . .";
                 }
-                if(this.counter === 5) {
+                if (this.counter === 5) {
                     window.open('./eastereggs/snake.html', "", "width=420,height=500");
                     event.target.innerHTML = "Register";
                     event.target.classList.remove("pulse");
                 }
-                if(this.counter < 5) event.target.classList.add("pulse");
-                if(this.counter >= 5) this.counter = 0;
+                if (this.counter < 5) event.target.classList.add("pulse");
+                if (this.counter >= 5) this.counter = 0;
             }
         },
         name: 'render_login'
@@ -149,23 +133,43 @@
 
 <style>
     @keyframes pulse_animation {
-        0% { transform: scale(1); }
-        30% { transform: scale(1); }
-        40% { transform: scale(1.25); }
-        50% { transform: scale(1); }
-        60% { transform: scale(1); }
-        70% { transform: scale(1.25); }
-        80% { transform: scale(1); }
-        100% { transform: scale(1); }
+        0% {
+            transform: scale(1);
+        }
+        30% {
+            transform: scale(1);
+        }
+        40% {
+            transform: scale(1.25);
+            color: red;
+        }
+        50% {
+            transform: scale(1);
+        }
+        60% {
+            transform: scale(1);
+        }
+        70% {
+            transform: scale(1.25);
+            color: red;
+        }
+        80% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1);
+        }
     }
+
     .pulse {
         animation-name: pulse_animation;
         animation-duration: 1500ms;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
     }
-    span#message{
+
+    span#message {
         font-size: 12px;
         display: flex;
     }
-    </style>
+</style>

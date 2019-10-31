@@ -1,3 +1,41 @@
+ul.navbar-dashboard {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+ul.navbar-dashboard > li {
+    float: left;
+}
+
+ul.navbar-dashboard > li > a.btn {
+    color: #4682B4;
+    float: right;
+}
+
+ul.navbar-dashboard > li > a.btn.btn-cyan.btn-small.logout:hover {
+    background: #4682B4;
+    color: #fff;
+    border-color: #4682B4;
+}
+
+ul.navbar-dashboard > li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.navbar-dashboard > li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
 .t2p-wrap {
     background-color: #fff;
     padding: 20px;
@@ -9,6 +47,12 @@
     text-align: center;
 }
 
+#wrapper {
+    padding: 20px;
+    margin-top: 60px;
+    height: 1500px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +60,7 @@
     font-family: montserrat;
     box-sizing: border-box;
 }
+
 i.fa.fa-eye, i.fa.fa-eye-slash {
     float: right;
     position: absolute;
@@ -158,6 +203,22 @@ body {
     font-size: 13px;
 }
 
+.btn-small {
+    font-size: 0.8125em;
+    padding: 0.4125em 1.25em;
+}
+
+.btn-cyan {
+    color: #4682B4;
+    border-color: #4682B4;
+}
+
+.btn-cyan:hover {
+    background: #4682B4;
+    color: #fff;
+    border-color: #4682B4;
+}
+
 .regbtn {
     cursor: pointer;
     border: none;
@@ -178,7 +239,7 @@ form#login, form#register {
     -moz-backface-visibility: hidden;
 }
 
-form#register{
+form#register {
     height: 635px;
 }
 
@@ -215,16 +276,18 @@ form#register{
     z-index: 35;
     color: white;
 }
-.overlay{
+
+.overlay {
     height: 100%;
     width: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.9);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
 }
+
 .loader {
     border: 8px solid #fff;
     border-radius: 50%;
@@ -238,16 +301,26 @@ form#register{
 }
 
 @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
-input.focus{
+
+input.focus {
     width: 90%;
     overflow: hidden;
     text-overflow: clip;
 }
+
