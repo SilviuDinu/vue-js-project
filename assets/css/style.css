@@ -61,10 +61,18 @@ li.greeting {
         position: relative;
         right: 0;
         float: none;
-        width: 50%;
         margin: 15px auto;
     }
+    body {
+        height: 220vh;
+    }
 }
+@media screen and (max-width: 370px){
+    body {
+        height: 320vh;
+    }
+}
+
 
 .active {
     background-color: #4CAF50;
@@ -114,8 +122,10 @@ i.fa.fa-eye, i.fa.fa-eye-slash {
 
 body {
     min-height: 100vh;
-    background-image: linear-gradient(90deg, #3498db, #8e44ad);
+    background-image: linear-gradient(120deg, #3498db, #8e44ad);
 }
+
+
 
 .alert-fail {
     color: #3c763d;
