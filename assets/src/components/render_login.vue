@@ -3,10 +3,21 @@
     export default {
         data() {
             return {
-                getCurrentRoute: window.location.pathname + window.location.hash + window.location.search
+                counter: 0
             }
+
         },
         methods: {
+            validatePasswd: function () {
+                const firstPasswordField = document.querySelector('form#register input[type=password]').value;
+                if (event.target.value && event.target.value !== firstPasswordField) {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = "&#10005; Passwords don't match";
+                } else if (event.target.value && event.target.value === firstPasswordField) {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = "&#10003; Perfect match";
+                }
+            },
             register: function () {
                 const card = document.querySelector('div.flip-card-child');
                 card.classList.toggle('flipped');
@@ -28,6 +39,29 @@
                     event.target.parentNode.classList.remove("focused");
                 }
             },
+            preview: function () {
+                const x = event.target.parentNode.previousElementSibling;
+                if (x.type === "password") {
+                    event.target.classList.replace("fa-eye", "fa-eye-slash");
+                    x.type = "text";
+                } else if (x.type === "text") {
+                    event.target.classList.replace("fa-eye-slash", "fa-eye");
+                    x.type = "password";
+                }
+            },
+            easteregg: function () {
+                this.counter++;
+                if (this.counter >= 3) {
+                    event.target.innerHTML = 5 - this.counter + " clicks away. . .";
+                }
+                if (this.counter === 5) {
+                    window.open('./eastereggs/snake.html', "", "width=420,height=500");
+                    event.target.innerHTML = "Register";
+                    event.target.classList.remove("pulse");
+                }
+                if (this.counter < 5) event.target.classList.add("pulse");
+                if (this.counter >= 5) this.counter = 0;
+            }
         },
         name: 'render_login'
     }
@@ -47,7 +81,8 @@
                     <div class="txtb">
                         <input type="password" name="password_login" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
-                        <span data-placeholder="Password"></span>
+
+                        <span data-placeholder="Password"><i class="fa fa-eye" @click="preview()"></i></span>
                     </div>
                     <input type="submit" class="logbtn" value="Login">
 
@@ -60,7 +95,7 @@
             </div>
             <div class="flip-card-back" style="backface-visibility: hidden">
                 <form id="register" action="register" class="register-form" method="post">
-                    <h1>Register</h1>
+                    <h1 @click="easteregg" style="cursor: crosshair">Register</h1>
                     <div class="txtb">
                         <input type="text" required name="username_register" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
@@ -71,6 +106,13 @@
                         <input type="password" required name="password_register" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
                         <span data-placeholder="Password"></span>
+                    </div>
+
+                    <div class="txtb">
+                        <input type="password" required name="password_register" pattern="[A-Za-z0-9]+" @focus="rise()"
+                               @blur="fall()" @keyup="validatePasswd()">
+                        <span data-placeholder="Password again"></span>
+                        <span id="message"></span>
                     </div>
 
                     <div class="txtb">
@@ -88,3 +130,46 @@
         </div>
     </div>
 </template>
+
+<style>
+    @keyframes pulse_animation {
+        0% {
+            transform: scale(1);
+        }
+        30% {
+            transform: scale(1);
+        }
+        40% {
+            transform: scale(1.25);
+            color: red;
+        }
+        50% {
+            transform: scale(1);
+        }
+        60% {
+            transform: scale(1);
+        }
+        70% {
+            transform: scale(1.25);
+            color: red;
+        }
+        80% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .pulse {
+        animation-name: pulse_animation;
+        animation-duration: 1500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    span#message {
+        font-size: 12px;
+        display: flex;
+    }
+</style>

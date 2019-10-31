@@ -1,3 +1,75 @@
+ul.navbar-dashboard {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+ul.navbar-dashboard > li {
+    float: left;
+}
+
+ul.navbar-dashboard > li > a.btn {
+    color: #4682B4;
+    float: right;
+}
+
+ul.navbar-dashboard > li > a.btn.btn-cyan.btn-small.logout:hover {
+    background: #4682B4;
+    color: #fff;
+    border-color: #4682B4;
+}
+
+ul.navbar-dashboard > li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.navbar-dashboard > li a:hover:not(.active) {
+    background-color: #111;
+}
+
+li.greeting {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    position: fixed;
+    right: 170px;
+    min-width: 115px;
+    max-height: 55px;
+}
+
+@media screen and (max-width: 600px) {
+    ul.navbar-dashboard li.right,
+    ul.navbar-dashboard li {
+        float: none;
+    }
+
+    a.btn.btn-small.btn-cyan.logout {
+        position: relative;
+        right: 0;
+        float: none;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    ul.navbar-dashboard > li.greeting {
+        position: relative;
+        right: 0;
+        float: none;
+        width: 50%;
+        margin: 15px auto;
+    }
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
 .t2p-wrap {
     background-color: #fff;
     padding: 20px;
@@ -9,6 +81,20 @@
     text-align: center;
 }
 
+#wrapper {
+    padding: 30px;
+    margin-top: 75px;
+    height: 1500px;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,9 +103,18 @@
     box-sizing: border-box;
 }
 
+i.fa.fa-eye, i.fa.fa-eye-slash {
+    float: right;
+    position: absolute;
+    top: 35%;
+    font-size: 20px;
+    right: 0;
+    cursor: pointer;
+}
+
 body {
     min-height: 100vh;
-    background-image: linear-gradient(120deg, #3498db, #8e44ad);
+    background-image: linear-gradient(90deg, #3498db, #8e44ad);
 }
 
 .alert-fail {
@@ -60,7 +155,7 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%) translateY(calc(-50% - .5px));
 }
 
 .register-form h1 {
@@ -150,6 +245,22 @@ body {
     font-size: 13px;
 }
 
+.btn-small {
+    font-size: 0.8125em;
+    padding: 0.4125em 1.25em;
+}
+
+.btn-cyan {
+    color: #4682B4;
+    border-color: #4682B4;
+}
+
+.btn-cyan:hover {
+    background: #4682B4;
+    color: #fff;
+    border-color: #4682B4;
+}
+
 .regbtn {
     cursor: pointer;
     border: none;
@@ -170,8 +281,15 @@ form#login, form#register {
     -moz-backface-visibility: hidden;
 }
 
+form#register {
+    height: 635px;
+}
+
 .flip-card-parent {
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 .flipped {
@@ -181,11 +299,7 @@ form#login, form#register {
 .flip-card-back {
     transform: rotateX(180deg);
 }
-@media (min-width: 601px){
-    .flip-card-child{
-        margin-top: 23%;
-    }
-}
+
 .flip-card-child {
     position: absolute;
     transition: transform 0.6s ease-out;
@@ -193,8 +307,65 @@ form#login, form#register {
     left: 50%;
     top: 50%;
 }
-@media (max-width: 600px){
-    .flip-card-child{
-        margin-top: 110%;
+
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 35;
+    color: white;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.loader {
+    border: 8px solid #fff;
+    border-radius: 50%;
+    border-top: 8px solid blue;
+    width: 45px;
+    height: 45px;
+    margin: 15px auto;
+    text-align: center;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
     }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+input.focus {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.logo {
+    cursor: url(http://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto;
 }

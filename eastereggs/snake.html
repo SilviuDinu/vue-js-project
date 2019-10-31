@@ -1,0 +1,91 @@
+<div style="max-height: 420px">
+    <h1>Press arrow key to start</h1>
+    <canvas id="playground" width="400" height="400"></canvas>
+</div>
+<style>
+    h1 {
+        text-align: center;
+        font-family: Montserrat;
+    }
+</style>
+<script>
+    px = py = 10;
+    gridSize = tileCount = 20;
+    foodX = foodY = 15;
+    xSpeed = ySpeed = 0;
+    trail = [];
+    tail = 5;
+    lost = 0;
+    window.onload = function () {
+        canvas = document.getElementById("playground");
+        context = canvas.getContext("2d");
+        document.addEventListener("keydown", command);
+        setInterval(game, 1000 / 15);
+    };
+
+    function game() {
+        px += xSpeed;
+        py += ySpeed;
+        if (px < 0) {
+            px = tileCount - 1;
+        }
+        if (px > tileCount - 1) {
+            px = 0;
+        }
+        if (py < 0) {
+            py = tileCount - 1;
+        }
+        if (py > tileCount - 1) {
+            py = 0;
+        }
+        context.fillStyle = 'black';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.fillStyle = 'cyan';
+        for (var i = 0; i < trail.length; i++) {
+            context.fillRect(trail[i].x * gridSize, trail[i].y * gridSize, gridSize - 2, gridSize - 2);
+            if (trail[i].x === px && trail[i].y === py) {
+                tail = 5;
+            }
+        }
+        trail.push({x: px, y: py});
+        while (trail.length > tail) {
+            trail.shift();
+        }
+        if (foodY === py && foodX === px) {
+            tail++;
+            foodX = Math.floor(Math.random() * tileCount);
+            foodY = Math.floor(Math.random() * tileCount);
+        }
+        context.fillStyle = getRandomColor();
+        context.fillRect(foodX * gridSize, foodY * gridSize, gridSize - 2, gridSize - 2);
+    }
+
+    function command() {
+        switch (event.keyCode) {
+            case 37:
+                xSpeed = -1;
+                ySpeed = 0;
+                break;
+            case 38:
+                xSpeed = 0;
+                ySpeed = -1;
+                break;
+            case 39:
+                xSpeed = 1;
+                ySpeed = 0;
+                break;
+            case 40:
+                xSpeed = 0;
+                ySpeed = 1;
+                break;
+        }
+    }
+    function getRandomColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+
+</script>
