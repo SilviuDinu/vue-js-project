@@ -8,19 +8,31 @@
 
         },
         methods: {
+            validatePasswd: function(){
+                const firstPasswordField = document.querySelector('form#register input[type=password]').value;
+                if(event.target.value && event.target.value !== firstPasswordField) {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = "&#10005; Passwords don't match";
+                }
+                else if(event.target.value && event.target.value === firstPasswordField){
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = "&#10003; Perfect match";
+                }
+            },
             validation: function() {
 
                 var loginData = {
                     "username": document.querySelector('form#login input[type=text]').value,
                     "password": document.querySelector('form#login input[type=password]').value,
                 };
-                console.log(loginData);
-                console.log(loginData.username);
+                // console.log(loginData);
+                // console.log(loginData.username);
 
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("POST", window.location.origin + "/vue-js-project/login");
+                xhttp.open("POST", window.location.origin + "/vue-js-project/login.php");
                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 xhttp.send(JSON.stringify(loginData));
+                // console.log(JSON.stringify(loginData));
             },
             register: function () {
                 const card = document.querySelector('div.flip-card-child');
@@ -88,7 +100,7 @@
 
                         <span data-placeholder="Password"><i class="fa fa-eye" @click="preview()"></i></span>
                     </div>
-                    <input type="submit" class="logbtn" @click.prevent="validation()" value="Login">
+                    <input type="submit" class="logbtn" value="Login">
 
                     <div style="font-size: 16px" class="bottom-text">
                         Don't have account?
@@ -110,6 +122,13 @@
                         <input type="password" required name="password_register" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
                         <span data-placeholder="Password"></span>
+                    </div>
+
+                    <div class="txtb">
+                        <input type="password" required name="password_register" pattern="[A-Za-z0-9]+" @focus="rise()"
+                               @blur="fall()" @keyup="validatePasswd()">
+                        <span data-placeholder="Password again"></span>
+                        <span id="message"></span>
                     </div>
 
                     <div class="txtb">
@@ -144,5 +163,9 @@
         animation-duration: 1500ms;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+    }
+    span#message{
+        font-size: 12px;
+        display: flex;
     }
     </style>

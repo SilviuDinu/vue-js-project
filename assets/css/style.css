@@ -68,7 +68,7 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%) translateY(calc(-50% - .5px));
 }
 
 .register-form h1 {
@@ -176,6 +176,10 @@ form#login, form#register {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
+}
+
+form#register{
+    height: 635px;
 }
 
 .flip-card-parent {

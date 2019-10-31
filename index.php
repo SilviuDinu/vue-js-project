@@ -1,7 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION['failed']) && $_SESSION['failed'] === true && isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true) {
-    echo '<script name="login_fail_routine" src="./assets/js/build.js"></script> <div class="alert-fail" style="display: none">
+    echo '<script name="login_fail_routine">    const msg = document.querySelector(".alert-fail");
+    jQuery(msg).slideDown().delay(3000).slideUp();</script> <div class="alert-fail" style="display: none">
             <strong>Oops!</strong> Wrong Username or Password</a>.
         </div>';
 }

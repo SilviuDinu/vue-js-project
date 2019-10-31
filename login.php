@@ -22,7 +22,9 @@ if (isset($_POST["username_login"]) && isset($_POST["password_login"])) {
     } else if ($check->num_rows === 0) {
         $_SESSION['loggedIn'] = false;
         $_SESSION['failed'] = true;
-        header('Location: index?fail');
+//        echo "<script>const wrong = true;</script>";
+        header('Location: index');
+        echo "<script>const wrong = true;</script>";
     }
 }
 

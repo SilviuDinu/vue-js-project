@@ -3,7 +3,7 @@
     <canvas id="playground" width="400" height="400"></canvas>
 </div>
 <style>
-    h1{
+    h1 {
         text-align: center;
         font-family: Montserrat;
     }
@@ -44,7 +44,7 @@
         context.fillStyle = 'cyan';
         for (var i = 0; i < trail.length; i++) {
             context.fillRect(trail[i].x * gridSize, trail[i].y * gridSize, gridSize - 2, gridSize - 2);
-            if (trail[i].x == px && trail[i].y == py) {
+            if (trail[i].x === px && trail[i].y === py) {
                 tail = 5;
             }
         }
@@ -52,12 +52,12 @@
         while (trail.length > tail) {
             trail.shift();
         }
-        if (foodY == py && foodX == px) {
+        if (foodY === py && foodX === px) {
             tail++;
             foodX = Math.floor(Math.random() * tileCount);
             foodY = Math.floor(Math.random() * tileCount);
         }
-        context.fillStyle = 'red';
+        context.fillStyle = getRandomColor();
         context.fillRect(foodX * gridSize, foodY * gridSize, gridSize - 2, gridSize - 2);
     }
 
@@ -80,6 +80,12 @@
                 ySpeed = 1;
                 break;
         }
+    }
+    function getRandomColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        return "rgb(" + r + "," + g + "," + b + ")";
     }
 
 </script>

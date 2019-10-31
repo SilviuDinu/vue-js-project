@@ -25,8 +25,8 @@ window.addEventListener('load', function () {
     }
 });
 
-if(window.location.search === '?fail') {
-    const msg = document.querySelector(".alert-fail");
-    jQuery(msg).slideDown().delay(3000).slideUp();
-}
+// if(window.location.pathname === 'index') {
+//     const msg = document.querySelector(".alert-fail");
+//     jQuery(msg).slideDown().delay(3000).slideUp();
+// }
 
