@@ -181,11 +181,20 @@ form#login, form#register {
 .flip-card-back {
     transform: rotateX(180deg);
 }
-
+@media (min-width: 601px){
+    .flip-card-child{
+        margin-top: 23%;
+    }
+}
 .flip-card-child {
     position: absolute;
     transition: transform 0.6s ease-out;
     transform-style: preserve-3d;
     left: 50%;
-    margin-top: 23%;
+    top: 50%;
+}
+@media (max-width: 600px){
+    .flip-card-child{
+        margin-top: 110%;
+    }
 }
