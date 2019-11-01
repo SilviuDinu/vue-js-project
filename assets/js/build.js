@@ -12389,6 +12389,14 @@ var _render_login = __webpack_require__(14);
 
 var _render_login2 = _interopRequireDefault(_render_login);
 
+var _navbar = __webpack_require__(25);
+
+var _navbar2 = _interopRequireDefault(_navbar);
+
+var _dashboard = __webpack_require__(20);
+
+var _dashboard2 = _interopRequireDefault(_dashboard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
@@ -12403,7 +12411,7 @@ exports.default = {
     methods: {},
     name: 'App.vue',
     components: {
-        render_login: _render_login2.default
+        dashboard: _dashboard2.default
     }
 };
 
@@ -12874,20 +12882,34 @@ var _dashboard = __webpack_require__(20);
 
 var _dashboard2 = _interopRequireDefault(_dashboard);
 
+var _render_login = __webpack_require__(14);
+
+var _render_login2 = _interopRequireDefault(_render_login);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* jshint esversion: 6 */
 window.addEventListener('load', function () {
     if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
     if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#main',
-            components: { App: _App2.default },
+            components: { render_login: _render_login2.default },
             render: function render(h) {
-                return h(_App2.default);
+                return h(_render_login2.default);
             }
         });
     }
+}); /* jshint esversion: 6 */
+
+
+window.addEventListener('load', function () {
+    new _vue2.default({ // eslint-disable-line no-new
+        el: '#nav',
+        components: { navbar: _navbar2.default },
+        render: function render(h) {
+            return h(_navbar2.default);
+        }
+    });
 });
 
 window.addEventListener('load', function () {
@@ -12895,22 +12917,9 @@ window.addEventListener('load', function () {
     if (!document.querySelector('div.overlay') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#app',
-            components: { navbar: _navbar2.default },
+            components: { App: _App2.default },
             render: function render(h) {
-                return h(_navbar2.default);
-            }
-        });
-    }
-});
-
-window.addEventListener('load', function () {
-    if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
-    if (!document.querySelector('div.overlay') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
-        new _vue2.default({ // eslint-disable-line no-new
-            el: '#dashboard',
-            components: { dashboard: _dashboard2.default },
-            render: function render(h) {
-                return h(_dashboard2.default);
+                return h(_App2.default);
             }
         });
     }
@@ -13656,7 +13665,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("render_login")
+  return _c("dashboard")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13818,7 +13827,6 @@ if (false) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
 //
 //
 //

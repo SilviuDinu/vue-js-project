@@ -27,8 +27,8 @@ session_abort();
         <div class="loader"></div>
     </div>
 </div>
+<div id="nav"></div>
 <div id="app"></div>
-<div id="dashboard"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>

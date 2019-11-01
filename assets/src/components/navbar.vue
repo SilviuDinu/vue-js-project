@@ -16,8 +16,7 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">News</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li class="greeting"><img src="assets/img/img_avatar.png" alt="Avatar" class="avatar">Hello, {{
-                        this.name }}
+                    <li class="greeting"><img src="assets/img/img_avatar.png" alt="Avatar" class="avatar">Hello, {{ this.name }}
                     </li>
                     <li>
                         <a @click="logout()" class="btn btn-small btn-cyan logout">Logout</a>
