@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] !== true) header('Location: index');
-echo "<script>
-document.cookie = 'loggedIN=";
-echo $_SESSION["current_user"] . "';</script>";
+echo '<script> sessionStorage.setItem("loggedin", "';
+echo $_SESSION['current_user'];
+echo '");</script>';
 session_abort();
 ?>
 <!DOCTYPE html>
@@ -28,6 +28,7 @@ session_abort();
     </div>
 </div>
 <div id="app"></div>
+<div id="dashboard"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>

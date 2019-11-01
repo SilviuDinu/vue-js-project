@@ -12834,61 +12834,13 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
     data: function data() {
-        return {
-            counter: 0,
-            name: 'loggedIN'
-        };
+        return {};
     },
 
-    methods: {
-        logout: function logout() {
-            window.location.pathname = '/vue-js-project/destroy_session.php';
-        },
-        easteregg: function easteregg() {
-            this.counter++;
-            if (this.counter === 5) {
-                window.open('./eastereggs/snake.html', "", "width=420,height=500");
-                event.target.classList.remove("pulse-logo");
-            }
-            if (this.counter < 5) event.target.classList.add("pulse-logo");
-            if (this.counter >= 5) this.counter = 0;
-        },
-        cookie: function cookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1, c.length);
-                }if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-    },
+    methods: {},
     name: 'dashboard'
 };
 
@@ -12914,12 +12866,17 @@ var _App = __webpack_require__(13);
 
 var _App2 = _interopRequireDefault(_App);
 
+var _navbar = __webpack_require__(25);
+
+var _navbar2 = _interopRequireDefault(_navbar);
+
 var _dashboard = __webpack_require__(20);
 
 var _dashboard2 = _interopRequireDefault(_dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* jshint esversion: 6 */
 window.addEventListener('load', function () {
     if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
     if (window.location.pathname !== '/vue-js-pro/dashboard.php') {
@@ -12931,13 +12888,26 @@ window.addEventListener('load', function () {
             }
         });
     }
-}); /* jshint esversion: 6 */
-
+});
 
 window.addEventListener('load', function () {
+    if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
     if (!document.querySelector('div.overlay') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
         new _vue2.default({ // eslint-disable-line no-new
             el: '#app',
+            components: { navbar: _navbar2.default },
+            render: function render(h) {
+                return h(_navbar2.default);
+            }
+        });
+    }
+});
+
+window.addEventListener('load', function () {
+    if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
+    if (!document.querySelector('div.overlay') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
+        new _vue2.default({ // eslint-disable-line no-new
+            el: '#dashboard',
             components: { dashboard: _dashboard2.default },
             render: function render(h) {
                 return h(_dashboard2.default);
@@ -13366,7 +13336,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(5)(false);
 // Module
-exports.push([module.i, "\n@keyframes pulse_animation {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n        color: red;\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n        color: red;\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\nspan#message {\n    font-size: 12px;\n    display: flex;\n}\n", ""]);
+exports.push([module.i, "\n@keyframes pulse_animation {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n        color: red;\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n        color: red;\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\nspan#message {\n    font-size: 14px;\n    display: flex;\n}\n", ""]);
 
 
 /***/ }),
@@ -13791,7 +13761,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(5)(false);
 // Module
-exports.push([module.i, "\n.btn[data-v-3bfbc1e1] {\n    border: 2px solid #4682B4;\n    margin-bottom: 0;\n    font-weight: 500;\n}\n.logout[data-v-3bfbc1e1] {\n    position: fixed;\n    right: 25px;\n    min-width: 115px;\n    max-height: 55px;\n}\nnav[data-v-3bfbc1e1] {\n    position: fixed;\n}\n@keyframes pulse_logo_animation-data-v-3bfbc1e1 {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse-logo[data-v-3bfbc1e1] {\n    animation-name: pulse_logo_animation-data-v-3bfbc1e1;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 
 /***/ }),
@@ -13806,72 +13776,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "nav",
-      {
-        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark fixed-top",
-        attrs: { id: "mainNav" }
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarResponsive" }
-          },
-          [
-            _c("div", { staticClass: "navbar-brand logo" }, [
-              _c("img", {
-                staticStyle: { width: "60px" },
-                attrs: { src: "assets/img/logo.jpg", alt: "logo" },
-                on: { click: _vm.easteregg }
-              })
-            ]),
-            _vm._v(" "),
-            _c(
-              "ul",
-              {
-                staticClass: "navbar-dashboard",
-                attrs: { id: "exampleAccordion" }
-              },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _vm._m(3),
-                _vm._v(" "),
-                _c("li", { staticClass: "greeting" }, [
-                  _c("img", {
-                    staticClass: "avatar",
-                    attrs: { src: "assets/img/img_avatar.png", alt: "Avatar" }
-                  }),
-                  _vm._v("Hello, " + _vm._s(this.cookie("loggedIN")))
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-small btn-cyan logout",
-                      on: {
-                        click: function($event) {
-                          return _vm.logout()
-                        }
-                      }
-                    },
-                    [_vm._v("Logout")]
-                  )
-                ])
-              ]
-            )
-          ]
-        )
-      ]
-    ),
-    _vm._v(" "),
     _c(
       "div",
       { attrs: { id: "wrapper" } },
@@ -13894,6 +13798,269 @@ var render = function() {
     )
   ])
 }
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3bfbc1e1", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    data: function data() {
+        return {
+            counter: 0,
+            name: sessionStorage.getItem('loggedin')
+        };
+    },
+
+    methods: {
+        logout: function logout() {
+            sessionStorage.removeItem("loggedin");
+            window.location.pathname = '/vue-js-project/destroy_session.php';
+        },
+        easteregg: function easteregg() {
+            this.counter++;
+            if (this.counter === 5) {
+                window.open('./eastereggs/snake.html', "", "width=420,height=500");
+                event.target.classList.remove("pulse-logo");
+            }
+            if (this.counter < 5) event.target.classList.add("pulse-logo");
+            if (this.counter >= 5) this.counter = 0;
+        },
+        cookie: function cookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1, c.length);
+                }if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+    },
+    name: 'navbar'
+};
+
+/***/ }),
+/* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_navbar_vue__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_navbar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_navbar_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_navbar_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_navbar_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_853787da_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_navbar_vue__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+function injectStyle (context) {
+  if (disposed) return
+  __webpack_require__(26)
+}
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-853787da"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_navbar_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_853787da_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_navbar_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_853787da_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_navbar_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "assets\\src\\components\\navbar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-853787da", Component.options)
+  } else {
+    hotAPI.reload("data-v-853787da", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(27);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(6).default
+var update = add("38254820", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"id\":\"data-v-853787da\",\"scoped\":true,\"sourceMap\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./navbar.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"id\":\"data-v-853787da\",\"scoped\":true,\"sourceMap\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./navbar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// Module
+exports.push([module.i, "\n.btn[data-v-853787da] {\n    border: 2px solid #4682B4;\n    margin-bottom: 0;\n    font-weight: 500;\n}\n.logout[data-v-853787da] {\n    position: fixed;\n    right: 25px;\n    min-width: 115px;\n    max-height: 55px;\n}\nnav[data-v-853787da] {\n    position: fixed;\n}\n.navbar-toggler[data-v-853787da] {\n    border: 1px solid;\n}\n@keyframes pulse_logo_animation-data-v-853787da {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse-logo[data-v-853787da] {\n    animation-name: pulse_logo_animation-data-v-853787da;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "nav",
+      {
+        staticClass: "navbar navbar-expand-lg navbar-dark bg-dark fixed-top",
+        attrs: { id: "mainNav" }
+      },
+      [
+        _c("div", { staticClass: "navbar-brand logo" }, [
+          _c("img", {
+            staticStyle: { width: "60px" },
+            attrs: { src: "assets/img/logo.jpg", alt: "logo" },
+            on: { click: _vm.easteregg }
+          })
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarResponsive" }
+          },
+          [
+            _c(
+              "ul",
+              {
+                staticClass: "navbar-dashboard",
+                attrs: { id: "exampleAccordion" }
+              },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("li", { staticClass: "greeting" }, [
+                  _c("img", {
+                    staticClass: "avatar",
+                    attrs: { src: "assets/img/img_avatar.png", alt: "Avatar" }
+                  }),
+                  _vm._v("Hello, " + _vm._s(this.name) + "\n                ")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-small btn-cyan logout",
+                      on: {
+                        click: function($event) {
+                          return _vm.logout()
+                        }
+                      }
+                    },
+                    [_vm._v("Logout")]
+                  )
+                ])
+              ]
+            )
+          ]
+        )
+      ]
+    )
+  ])
+}
 var staticRenderFns = [
   function() {
     var _vm = this
@@ -13902,7 +14069,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "navbar-toggler navbar-toggler-right",
+        staticClass: "navbar-toggler ml-auto navbar-toggler-right",
         attrs: {
           type: "button",
           "data-toggle": "collapse",
@@ -13939,7 +14106,7 @@ render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3bfbc1e1", { render: render, staticRenderFns: staticRenderFns })
+    require("vue-hot-reload-api")      .rerender("data-v-853787da", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 

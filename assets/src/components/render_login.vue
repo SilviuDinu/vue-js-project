@@ -169,7 +169,7 @@
     }
 
     span#message {
-        font-size: 12px;
+        font-size: 14px;
         display: flex;
     }
 </style>

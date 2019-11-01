@@ -73,7 +73,6 @@ li.greeting {
     }
 }
 
-
 .active {
     background-color: #4CAF50;
 }
@@ -377,5 +376,6 @@ input.focus {
 }
 
 .logo {
-    cursor: url(http://cur.cursors-4u.net/sports/spo-1/spo15.cur), auto;
+    cursor: url(../../assets/img/blade.cur), auto;
+    /*transform: translate(-10px, -45px);*/
 }
