@@ -20,7 +20,7 @@
         canvas = document.getElementById("playground");
         context = canvas.getContext("2d");
         document.addEventListener("keydown", command);
-        setInterval(game, 1000 / 15);
+        setInterval(game, 10000);
     };
 
     function game() {
@@ -64,20 +64,20 @@
     function command() {
         switch (event.keyCode) {
             case 37:
-                xSpeed = -1;
+                xSpeed = -0.25;
                 ySpeed = 0;
                 break;
             case 38:
                 xSpeed = 0;
-                ySpeed = -1;
+                ySpeed = -0.25;
                 break;
             case 39:
-                xSpeed = 1;
+                xSpeed = 0.25;
                 ySpeed = 0;
                 break;
             case 40:
                 xSpeed = 0;
-                ySpeed = 1;
+                ySpeed = 0.25;
                 break;
         }
     }

@@ -1,7 +1,6 @@
 /* jshint esversion: 6 */
 import Vue from 'vue'
 import App from './App.vue';
-import navbar from "./components/navbar.vue";
 import dashboard from "./components/dashboard.vue";
 import render_login from "./components/render_login.vue";
 
@@ -17,19 +16,12 @@ window.addEventListener('load', function () {
     }
 });
 
-window.addEventListener('load', function () {
-    new Vue({ // eslint-disable-line no-new
-        el: '#nav',
-        components: {navbar},
-        render: (h) => h(navbar)
-    });
-});
 
 window.addEventListener('load', function () {
     if (document.querySelector('div.overlay')) document.querySelector('div.overlay').remove();
     if (!document.querySelector('div.overlay') && window.location.pathname === '/vue-js-project/dashboard.php' || window.location.pathname === '/vue-js-project/dashboard') {
         new Vue({ // eslint-disable-line no-new
-            el: '#app',
+            el: '#dashboard',
             components: {App},
             render: (h) => h(App)
         });
