@@ -13,10 +13,10 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-dashboard" id="exampleAccordion">
-                    <li><a href="dashboard">Home</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li @click="account()" class="greeting">
+                    <li @click.prevent="renderPage()"><a href="#home">Home</a></li>
+                    <li><a  @click.prevent="renderPage()" href="#news">News</a></li>
+                    <li><a  @click.prevent="renderPage()" href="#contact">Contact</a></li>
+                    <li @click="renderPage()" class="greeting">
                         <img src="assets/img/img_avatar.png" alt="Avatar" class="avatar">Hello, {{ this.name }}
                     </li>
                     <li>
@@ -27,8 +27,8 @@
         </nav>
         <div style="width: 100%">
             <div id="wrapper">
-                <div id="home">
-                    <h1 @click="account">Home Route</h1>
+                <div id="home" v-show="this.home">
+                    <h1>Home Route</h1>
                     <div class="container">
                         <div class="content" v-for="n in 10"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed
@@ -36,10 +36,28 @@
                         </div>
                     </div>
                 </div>
-                <div id="account" v-show="account">
-                    <h1 @click="account">Account settings</h1>
+                <div id="account" v-show="this.acc">
+                    <h1>Account settings</h1>
                     <div class="container">
                         <div class="content" v-for="n in 6"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="news" v-show="this.news">
+                    <h1>Feed</h1>
+                    <div class="container">
+                        <div class="content" v-for="n in 8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="contact" v-show="this.contact">
+                    <h1>Contact</h1>
+                    <div class="container">
+                        <div class="content" v-for="n in 4"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed
                             do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                         </div>
@@ -51,18 +69,16 @@
 </template>
 
 <script>
-
     export default {
         data() {
             return {
                 counter: 0,
-                name: sessionStorage.getItem('loggedin')
+                name: sessionStorage.getItem('loggedin'),
+                acc: false,
+                home: true,
+                news: false,
+                contact: false,
             }
-        },
-        mounted() {
-            this.$root.$emit('dashboard', () => {
-                this.account();
-            })
         },
         methods: {
             logout: function () {
@@ -78,9 +94,49 @@
                 if (this.counter < 5) event.target.classList.add("pulse-logo");
                 if (this.counter >= 5) this.counter = 0;
             },
-            account: function () {
-                document.getElementById("home").style.display = 'none';
-            }
+            renderPage: function () {
+                const items = document.querySelectorAll('ul.navbar-dashboard > li > a');
+                console.log(items);
+                if(event.target.getAttribute('href') === '#home'){
+                    if(this.home === false){
+                        this.home = !this.home;
+                        this.acc = this.news = this.contact = false;
+                    }
+                    for (let i=0; i<items.length; i++){
+                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    }
+                    event.target.classList.toggle('active');
+                }
+                if(event.target.getAttribute('href') === '#news'){
+                    if(this.news === false){
+                        this.news = !this.news;
+                        this.acc = this.home = this.contact = false;
+                    }
+                    for (let i=0; i<items.length; i++){
+                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    }
+                    event.target.classList.toggle('active');
+                }
+                if(event.target.getAttribute('href') === '#contact'){
+                    if(this.contact === false){
+                        this.contact = !this.contact;
+                        this.acc = this.news = this.home = false;
+                    }
+                    for (let i=0; i<items.length; i++){
+                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    }
+                    event.target.classList.toggle('active');
+                }
+                if(event.target.classList.contains('greeting') || event.target.classList.contains('avatar')){
+                    if(this.acc === false){
+                        this.acc = !this.acc;
+                        this.home = this.news = this.contact = false;
+                    }
+                    for (let i=0; i<items.length; i++){
+                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    }
+                }
+            },
         },
         name: 'dashboard'
     }
@@ -160,7 +216,9 @@
             transform: scale(1);
         }
     }
+    #home, #news, #contact, #account{
 
+    }
     .pulse-logo {
         animation-name: pulse_logo_animation;
         animation-duration: 1500ms;
