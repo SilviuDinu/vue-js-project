@@ -12810,7 +12810,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     data: function data() {
         return {
-            counter: 0
+            counter: 0,
+            match: false
         };
     },
 
@@ -12820,9 +12821,16 @@ exports.default = {
             if (event.target.value && event.target.value !== firstPasswordField) {
                 document.getElementById('message').style.color = 'red';
                 document.getElementById('message').innerHTML = "&#10005; Passwords don't match";
+                this.match = false;
             } else if (event.target.value && event.target.value === firstPasswordField) {
                 document.getElementById('message').style.color = 'green';
                 document.getElementById('message').innerHTML = "&#10003; Perfect match";
+                this.match = true;
+            }
+        },
+        validateSubmit: function validateSubmit() {
+            if (this.match === false) {
+                event.preventDefault();
             }
         },
         register: function register() {
@@ -13506,7 +13514,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(6)(false);
 // Module
-exports.push([module.i, "\n@keyframes pulse_animation {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n        color: red;\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n        color: red;\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\nspan#message {\n    font-size: 14px;\n    display: flex;\n}\n", ""]);
+exports.push([module.i, "\n@keyframes pulse_animation {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n        color: red;\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n        color: red;\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\nspan#message {\n    font-size: 15px;\n    display: flex;\n}\n", ""]);
 
 
 /***/ }),
@@ -13669,7 +13677,12 @@ var render = function() {
             "form",
             {
               staticClass: "register-form",
-              attrs: { id: "register", action: "register", method: "post" }
+              attrs: { id: "register", action: "register", method: "post" },
+              on: {
+                submit: function($event) {
+                  return _vm.validateSubmit()
+                }
+              }
             },
             [
               _c(

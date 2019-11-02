@@ -3,7 +3,8 @@
     export default {
         data() {
             return {
-                counter: 0
+                counter: 0,
+                match: false
             }
 
         },
@@ -13,10 +14,17 @@
                 if (event.target.value && event.target.value !== firstPasswordField) {
                     document.getElementById('message').style.color = 'red';
                     document.getElementById('message').innerHTML = "&#10005; Passwords don't match";
+                    this.match = false;
                 } else if (event.target.value && event.target.value === firstPasswordField) {
                     document.getElementById('message').style.color = 'green';
                     document.getElementById('message').innerHTML = "&#10003; Perfect match";
+                    this.match = true;
                 }
+            },
+            validateSubmit: function(){
+                 if(this.match === false) {
+                     event.preventDefault();
+                 }
             },
             register: function () {
                 const card = document.querySelector('div.flip-card-child');
@@ -94,7 +102,7 @@
                 </form>
             </div>
             <div class="flip-card-back" style="backface-visibility: hidden">
-                <form id="register" action="register" class="register-form" method="post">
+                <form id="register" action="register" @submit="validateSubmit()" class="register-form" method="post">
                     <h1 @click="easteregg" style="cursor: crosshair">Register</h1>
                     <div class="txtb">
                         <input type="text" required name="username_register" pattern="[A-Za-z0-9]+" @focus="rise()"
@@ -169,7 +177,7 @@
     }
 
     span#message {
-        font-size: 14px;
+        font-size: 15px;
         display: flex;
     }
 </style>
