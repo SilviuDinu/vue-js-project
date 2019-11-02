@@ -25,7 +25,7 @@
                             <input type="checkbox" id="checkbox" />
                             <div class="slider round"></div>
                         </label>
-                        <em>Enable Dark Mode!</em>
+                        <em>Enable Dark Mode</em>
                     </div></a></li>
                     <li @click="renderPage()" class="greeting">
                         <img src="assets/img/img_avatar.png" alt="Avatar" class="avatar">Hello, {{ this.name }}
@@ -151,7 +151,14 @@
                 }
             },
             toggle: function () {
-                if(document.querySelector('input#checkbox:checked')) this.stars = !this.stars;
+                if(document.querySelector('input#checkbox:checked')) {
+                    this.stars = !this.stars;
+                    document.querySelector('div#wrapper').classList.toggle('dark-mode');
+                    const contents = document.querySelectorAll('div.content');
+                    for(let i=0; i<contents.length; i++){
+                        contents[i].classList.toggle('dark-content');
+                    }
+                }
             }
         },
         name: 'dashboard'
@@ -186,9 +193,16 @@
         display: inline-block;
         margin-bottom: 0;
     }
+    .dark-mode{
+        color: #fff;
+    }
 
     div.content:hover {
         background-color: rgba(217, 223, 254, 0.2);
+    }
+
+    .dark-content{
+        background-color: rgba(255,255,255,0.075);
     }
 
     p {
