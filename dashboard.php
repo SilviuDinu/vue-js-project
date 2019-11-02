@@ -35,11 +35,7 @@ session_abort();
 </div>
 <div id="dashboard"></div>
 </body>
-<footer>
-    <div class="copyright text-center">
-        Copyright © 2019 <span><a href="https://github.com/SilviuDinu/vue-js-project">Silviu's vueJS project</a></span>
-    </div>
-</footer>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -54,4 +50,9 @@ session_abort();
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+<footer>
+    <div class="copyright text-center">
+        Copyright © 2019 <span><a href="https://github.com/SilviuDinu/vue-js-project">Silviu's vueJS project</a></span>
+    </div>
+</footer>
 </html>

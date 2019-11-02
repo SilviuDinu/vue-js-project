@@ -202,7 +202,7 @@
     }
 
     .dark-content{
-        background-color: rgba(255,255,255,0.075);
+        background-color: rgba(255,255,255,0.05);
     }
 
     p {
