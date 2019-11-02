@@ -37,7 +37,7 @@ session_abort();
 </body>
 <footer>
     <div class="copyright text-center">
-        Copyright © 2019 <span>Silviu's vueJS project</span>
+        Copyright © 2019 <span><a href="https://github.com/SilviuDinu/vue-js-project">Silviu's vueJS project</a></span>
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
