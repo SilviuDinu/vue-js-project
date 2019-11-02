@@ -257,6 +257,12 @@
         }
     }
 
+    @media (max-width: 1024px) {
+        div.content{
+            width: 100%;
+        }
+    }
+
     .pulse-logo {
         animation-name: pulse_logo_animation;
         animation-duration: 1500ms;
