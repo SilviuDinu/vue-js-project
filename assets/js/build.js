@@ -13118,6 +13118,7 @@ exports.default = {
                 for (var i = 0; i < contents.length; i++) {
                     contents[i].classList.toggle('dark-content');
                 }
+                document.querySelector('body').classList.toggle('body-dark-mode');
             }
         }
     },

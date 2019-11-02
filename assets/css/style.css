@@ -80,8 +80,30 @@ li.greeting {
     #wrapper{
         height: auto !important;
     }
+    .login-form h1, .register-form h1{
+        margin-bottom: 30px !important;
+    }
+    .bottom-text{
+        margin-top: 25px !important;
+    }
+    form#login{
+        width: 270px;
+        height: 450px;
+    }
+    form#register{
+        width: 270px;
+        height: 490px !important;
+    }
+    .theme-switch-wrapper-login {
+        display: none !important;
+    }
+    .register-form{
+        padding: 20px 30px !important;
+    }
 }
-
+.body-dark-mode{
+    background-color: #000 !important;
+ }
 @media screen and (max-width: 370px) {
 
 }
