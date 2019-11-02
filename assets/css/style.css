@@ -28,7 +28,7 @@ ul.navbar-dashboard > li a {
     text-decoration: none;
 }
 
-ul.navbar-dashboard > li a:hover:not(.active) {
+ul.navbar-dashboard > li a:hover:not(.active):not(.toggle-item) {
     background-color: #111;
 }
 
@@ -64,13 +64,23 @@ li.greeting {
         float: none;
         margin: 15px auto;
     }
+
     body {
-        height: 220vh;
+        height: auto;
+    }
+
+    label {
+        margin: 0 auto !important;
+    }
+
+    .theme-switch-wrapper {
+        display: grid !important;
     }
 }
-@media screen and (max-width: 370px){
+
+@media screen and (max-width: 370px) {
     body {
-        height: 320vh;
+        height: auto;
     }
 }
 
@@ -89,13 +99,13 @@ li.greeting {
     text-align: center;
 }
 
-footer .copyright{
+footer .copyright {
     padding: 25px 0;
+    bottom: 0;
     background: #333;
-    margin-top: 20px;
     font-size: 15px;
     color: white;
-    height: auto;
+    width: 100%;
 }
 
 #wrapper {
@@ -308,6 +318,7 @@ form#register {
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 2;
 }
 
 .flipped {
@@ -388,4 +399,105 @@ input.focus {
     cursor: url(../../assets/img/blade.cur), auto;
     margin-right: 25px;
     /*transform: translate(-10px, -45px);*/
+}
+
+/*slider switch css */
+
+em {
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+
+input:checked + .slider {
+    background-color: #4682B4;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/*STARSS*/
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+.stars, .twinkling {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    display:block;
+    z-index: -2;
+}
+
+.stars {
+    background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    z-index:-2;
+}
+
+.twinkling{
+    background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+    z-index:-2;
+
+    -moz-animation:move-twink-back 200s linear infinite;
+    -ms-animation:move-twink-back 200s linear infinite;
+    -o-animation:move-twink-back 200s linear infinite;
+    -webkit-animation:move-twink-back 200s linear infinite;
+    animation:move-twink-back 200s linear infinite;
 }

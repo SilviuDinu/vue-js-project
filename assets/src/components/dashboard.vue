@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div>
+            <div v-if="this.stars" class="stars"></div>
+            <div v-if="this.stars" class="twinkling"></div>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="navbar-brand logo">
                 <img src="assets/img/logo.jpg" @click="easteregg" alt="logo" style="width:60px;">
@@ -14,8 +18,15 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-dashboard" id="exampleAccordion">
                     <li @click.prevent="renderPage()"><a href="#home">Home</a></li>
-                    <li><a  @click.prevent="renderPage()" href="#news">News</a></li>
-                    <li><a  @click.prevent="renderPage()" href="#contact">Contact</a></li>
+                    <li><a @click.prevent="renderPage()" href="#news">News</a></li>
+                    <li><a @click.prevent="renderPage()" href="#contact">Contact</a></li>
+                    <li><a @click="toggle()" class="toggle-item" href="#"><div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round"></div>
+                        </label>
+                        <em>Enable Dark Mode!</em>
+                    </div></a></li>
                     <li @click="renderPage()" class="greeting">
                         <img src="assets/img/img_avatar.png" alt="Avatar" class="avatar">Hello, {{ this.name }}
                     </li>
@@ -25,7 +36,9 @@
                 </ul>
             </div>
         </nav>
+
         <div style="width: 100%">
+
             <div id="wrapper">
                 <div id="home" v-show="this.home">
                     <h1>Home Route</h1>
@@ -78,6 +91,7 @@
                 home: true,
                 news: false,
                 contact: false,
+                stars: false
             }
         },
         methods: {
@@ -96,47 +110,49 @@
             },
             renderPage: function () {
                 const items = document.querySelectorAll('ul.navbar-dashboard > li > a');
-                console.log(items);
-                if(event.target.getAttribute('href') === '#home'){
-                    if(this.home === false){
+                if (event.target.getAttribute('href') === '#home') {
+                    if (this.home === false) {
                         this.home = !this.home;
                         this.acc = this.news = this.contact = false;
                     }
-                    for (let i=0; i<items.length; i++){
-                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    for (let i = 0; i < items.length; i++) {
+                        if (items[i].classList.contains('active')) items[i].classList.remove('active');
                     }
                     event.target.classList.toggle('active');
                 }
-                if(event.target.getAttribute('href') === '#news'){
-                    if(this.news === false){
+                if (event.target.getAttribute('href') === '#news') {
+                    if (this.news === false) {
                         this.news = !this.news;
                         this.acc = this.home = this.contact = false;
                     }
-                    for (let i=0; i<items.length; i++){
-                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    for (let i = 0; i < items.length; i++) {
+                        if (items[i].classList.contains('active')) items[i].classList.remove('active');
                     }
                     event.target.classList.toggle('active');
                 }
-                if(event.target.getAttribute('href') === '#contact'){
-                    if(this.contact === false){
+                if (event.target.getAttribute('href') === '#contact') {
+                    if (this.contact === false) {
                         this.contact = !this.contact;
                         this.acc = this.news = this.home = false;
                     }
-                    for (let i=0; i<items.length; i++){
-                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    for (let i = 0; i < items.length; i++) {
+                        if (items[i].classList.contains('active')) items[i].classList.remove('active');
                     }
                     event.target.classList.toggle('active');
                 }
-                if(event.target.classList.contains('greeting') || event.target.classList.contains('avatar')){
-                    if(this.acc === false){
+                if (event.target.classList.contains('greeting') || event.target.classList.contains('avatar')) {
+                    if (this.acc === false) {
                         this.acc = !this.acc;
                         this.home = this.news = this.contact = false;
                     }
-                    for (let i=0; i<items.length; i++){
-                        if(items[i].classList.contains('active')) items[i].classList.remove('active');
+                    for (let i = 0; i < items.length; i++) {
+                        if (items[i].classList.contains('active')) items[i].classList.remove('active');
                     }
                 }
             },
+            toggle: function () {
+                if(document.querySelector('input#checkbox:checked')) this.stars = !this.stars;
+            }
         },
         name: 'dashboard'
     }
@@ -159,6 +175,16 @@
         display: inline-block;
         border: 2px solid;
         width: 49%;
+    }
+
+    .theme-switch-wrapper {
+        display: flex;
+        align-items: center;
+        margin: -5px auto;
+    }
+    label {
+        display: inline-block;
+        margin-bottom: 0;
     }
 
     div.content:hover {
@@ -216,9 +242,7 @@
             transform: scale(1);
         }
     }
-    #home, #news, #contact, #account{
 
-    }
     .pulse-logo {
         animation-name: pulse_logo_animation;
         animation-duration: 1500ms;

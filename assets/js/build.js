@@ -13021,6 +13021,19 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
@@ -13030,7 +13043,8 @@ exports.default = {
             acc: false,
             home: true,
             news: false,
-            contact: false
+            contact: false,
+            stars: false
         };
     },
 
@@ -13050,7 +13064,6 @@ exports.default = {
         },
         renderPage: function renderPage() {
             var items = document.querySelectorAll('ul.navbar-dashboard > li > a');
-            console.log(items);
             if (event.target.getAttribute('href') === '#home') {
                 if (this.home === false) {
                     this.home = !this.home;
@@ -13090,6 +13103,9 @@ exports.default = {
                     if (items[_i3].classList.contains('active')) items[_i3].classList.remove('active');
                 }
             }
+        },
+        toggle: function toggle() {
+            if (document.querySelector('input#checkbox:checked')) this.stars = !this.stars;
         }
     },
     name: 'dashboard'
@@ -13689,7 +13705,11 @@ var render = function() {
                 "h1",
                 {
                   staticStyle: { cursor: "crosshair" },
-                  on: { click: _vm.easteregg }
+                  on: {
+                    click: function($event) {
+                      return _vm.easteregg()
+                    }
+                  }
                 },
                 [_vm._v("Register")]
               ),
@@ -13861,7 +13881,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(6)(false);
 // Module
-exports.push([module.i, "\nh1[data-v-3bfbc1e1] {\n    text-align: center;\n    margin-bottom: 50px;\n}\ndiv.container[data-v-3bfbc1e1] {\n    width: 100%;\n}\ndiv.content[data-v-3bfbc1e1] {\n    margin: 5px;\n    padding: 25px;\n    display: inline-block;\n    border: 2px solid;\n    width: 49%;\n}\ndiv.content[data-v-3bfbc1e1]:hover {\n    background-color: rgba(217, 223, 254, 0.2);\n}\np[data-v-3bfbc1e1] {\n    text-align: center;\n}\n.btn[data-v-3bfbc1e1] {\n    border: 2px solid #4682B4;\n    margin-bottom: 0;\n    font-weight: 500;\n}\n.logout[data-v-3bfbc1e1] {\n    position: fixed;\n    right: 25px;\n    min-width: 115px;\n    max-height: 55px;\n}\nnav[data-v-3bfbc1e1] {\n    position: fixed;\n}\n.navbar-toggler[data-v-3bfbc1e1] {\n    border: 1px solid;\n}\n@keyframes pulse_logo_animation-data-v-3bfbc1e1 {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n#home[data-v-3bfbc1e1], #news[data-v-3bfbc1e1], #contact[data-v-3bfbc1e1], #account[data-v-3bfbc1e1]{\n}\n.pulse-logo[data-v-3bfbc1e1] {\n    animation-name: pulse_logo_animation-data-v-3bfbc1e1;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
+exports.push([module.i, "\nh1[data-v-3bfbc1e1] {\n    text-align: center;\n    margin-bottom: 50px;\n}\ndiv.container[data-v-3bfbc1e1] {\n    width: 100%;\n}\ndiv.content[data-v-3bfbc1e1] {\n    margin: 5px;\n    padding: 25px;\n    display: inline-block;\n    border: 2px solid;\n    width: 49%;\n}\n.theme-switch-wrapper[data-v-3bfbc1e1] {\n    display: flex;\n    align-items: center;\n    margin: -5px auto;\n}\nlabel[data-v-3bfbc1e1] {\n    display: inline-block;\n    margin-bottom: 0;\n}\ndiv.content[data-v-3bfbc1e1]:hover {\n    background-color: rgba(217, 223, 254, 0.2);\n}\np[data-v-3bfbc1e1] {\n    text-align: center;\n}\n.btn[data-v-3bfbc1e1] {\n    border: 2px solid #4682B4;\n    margin-bottom: 0;\n    font-weight: 500;\n}\n.logout[data-v-3bfbc1e1] {\n    position: fixed;\n    right: 25px;\n    min-width: 115px;\n    max-height: 55px;\n}\nnav[data-v-3bfbc1e1] {\n    position: fixed;\n}\n.navbar-toggler[data-v-3bfbc1e1] {\n    border: 1px solid;\n}\n@keyframes pulse_logo_animation-data-v-3bfbc1e1 {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse-logo[data-v-3bfbc1e1] {\n    animation-name: pulse_logo_animation-data-v-3bfbc1e1;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
 
 
 /***/ }),
@@ -13876,6 +13896,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", [
+      this.stars ? _c("div", { staticClass: "stars" }) : _vm._e(),
+      _vm._v(" "),
+      this.stars ? _c("div", { staticClass: "twinkling" }) : _vm._e()
+    ]),
+    _vm._v(" "),
     _c(
       "nav",
       {
@@ -13949,6 +13975,22 @@ var render = function() {
                       }
                     },
                     [_vm._v("Contact")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "toggle-item",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.toggle()
+                        }
+                      }
+                    },
+                    [_vm._m(1)]
                   )
                 ]),
                 _vm._v(" "),
@@ -14149,6 +14191,20 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "theme-switch-wrapper" }, [
+      _c("label", { staticClass: "theme-switch", attrs: { for: "checkbox" } }, [
+        _c("input", { attrs: { type: "checkbox", id: "checkbox" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "slider round" })
+      ]),
+      _vm._v(" "),
+      _c("em", [_vm._v("Enable Dark Mode!")])
+    ])
   }
 ]
 render._withStripped = true

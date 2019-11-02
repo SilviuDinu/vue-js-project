@@ -103,7 +103,7 @@
             </div>
             <div class="flip-card-back" style="backface-visibility: hidden">
                 <form id="register" action="register" @submit="validateSubmit()" class="register-form" method="post">
-                    <h1 @click="easteregg" style="cursor: crosshair">Register</h1>
+                    <h1 @click="easteregg()" style="cursor: crosshair">Register</h1>
                     <div class="txtb">
                         <input type="text" required name="username_register" pattern="[A-Za-z0-9]+" @focus="rise()"
                                @blur="fall()">
