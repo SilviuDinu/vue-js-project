@@ -12811,7 +12811,8 @@ exports.default = {
     data: function data() {
         return {
             counter: 0,
-            match: false
+            match: false,
+            stars: false
         };
     },
 
@@ -12876,6 +12877,11 @@ exports.default = {
             }
             if (this.counter < 5) event.target.classList.add("pulse");
             if (this.counter >= 5) this.counter = 0;
+        },
+        toggle: function toggle() {
+            if (document.querySelector('input#checkbox:checked')) {
+                this.stars = !this.stars;
+            }
         }
     },
     name: 'render_login'
@@ -13537,7 +13543,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(6)(false);
 // Module
-exports.push([module.i, "\n@keyframes pulse_animation {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n        color: red;\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n        color: red;\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\nspan#message {\n    font-size: 15px;\n    display: flex;\n}\n", ""]);
+exports.push([module.i, "\n@keyframes pulse_animation {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n        color: red;\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n        color: red;\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n.pulse {\n    animation-name: pulse_animation;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\nspan#message {\n    font-size: 15px;\n    display: flex;\n}\n.theme-switch-wrapper-login {\n    display: flex;\n    align-items: center;\n    margin: 20px auto;\n    right: 20px;\n    position: absolute;\n}\nlabel.login {\n    display: inline-block;\n    margin-bottom: 0;\n}\n.dark-content {\n    background-color: transparent;\n    color: #fff;\n}\n", ""]);
 
 
 /***/ }),
@@ -13586,147 +13592,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flip-card-parent" }, [
-    _c("div", { staticClass: "flip-card-child" }, [
-      _c("div", { staticClass: "flip-card-front" }, [
-        _c(
-          "form",
-          {
-            staticClass: "login-form",
-            attrs: { id: "login", action: "login", method: "post" }
-          },
-          [
-            _c("h1", [_vm._v("Login")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "txtb" }, [
-              _c("input", {
-                attrs: {
-                  type: "text",
-                  name: "username_login",
-                  pattern: "[A-Za-z0-9]+"
-                },
-                on: {
-                  focus: function($event) {
-                    return _vm.rise()
-                  },
-                  blur: function($event) {
-                    return _vm.fall()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { attrs: { "data-placeholder": "Username" } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "txtb" }, [
-              _c("input", {
-                attrs: {
-                  type: "password",
-                  name: "password_login",
-                  pattern: "[A-Za-z0-9]+"
-                },
-                on: {
-                  focus: function($event) {
-                    return _vm.rise()
-                  },
-                  blur: function($event) {
-                    return _vm.fall()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { attrs: { "data-placeholder": "Password" } }, [
-                _c("i", {
-                  staticClass: "fa fa-eye",
-                  on: {
-                    click: function($event) {
-                      return _vm.preview()
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "logbtn",
-              attrs: { type: "submit", value: "Login" }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "bottom-text",
-                staticStyle: { "font-size": "16px" }
-              },
-              [
-                _vm._v(
-                  "\n                    Don't have account?\n                    "
-                ),
-                _c(
-                  "button",
-                  {
-                    staticClass: "regbtn",
-                    on: {
-                      click: function($event) {
-                        return _vm.register()
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticStyle: { "font-size": "16px" },
-                        attrs: { href: "#register" }
-                      },
-                      [_vm._v("Sign\n                        up")]
-                    )
-                  ]
-                )
-              ]
-            )
-          ]
-        )
-      ]),
+  return _c("div", [
+    _c("div", [
+      this.stars ? _c("div", { staticClass: "stars" }) : _vm._e(),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "flip-card-back",
-          staticStyle: { "backface-visibility": "hidden" }
-        },
-        [
+      this.stars ? _c("div", { staticClass: "twinkling" }) : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "theme-switch-wrapper-login",
+        on: {
+          click: function($event) {
+            return _vm.toggle()
+          }
+        }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("em", { staticStyle: { color: "#fff" } }, [
+          _vm._v("Enable Dark Mode")
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "flip-card-parent" }, [
+      _c("div", { staticClass: "flip-card-child" }, [
+        _c("div", { staticClass: "flip-card-front" }, [
           _c(
             "form",
             {
-              staticClass: "register-form",
-              attrs: { id: "register", action: "register", method: "post" },
-              on: {
-                submit: function($event) {
-                  return _vm.validateSubmit()
-                }
-              }
+              staticClass: "login-form",
+              attrs: { id: "login", action: "login", method: "post" }
             },
             [
-              _c(
-                "h1",
-                {
-                  staticStyle: { cursor: "crosshair" },
-                  on: {
-                    click: function($event) {
-                      return _vm.easteregg()
-                    }
-                  }
-                },
-                [_vm._v("Register")]
-              ),
+              _c("h1", [_vm._v("Login")]),
               _vm._v(" "),
               _c("div", { staticClass: "txtb" }, [
                 _c("input", {
                   attrs: {
                     type: "text",
-                    required: "",
-                    name: "username_register",
+                    name: "username_login",
                     pattern: "[A-Za-z0-9]+"
                   },
                   on: {
@@ -13746,8 +13654,7 @@ var render = function() {
                 _c("input", {
                   attrs: {
                     type: "password",
-                    required: "",
-                    name: "password_register",
+                    name: "password_login",
                     pattern: "[A-Za-z0-9]+"
                   },
                   on: {
@@ -13760,92 +13667,235 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("span", { attrs: { "data-placeholder": "Password" } })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "txtb" }, [
-                _c("input", {
-                  attrs: {
-                    type: "password",
-                    required: "",
-                    name: "password_register",
-                    pattern: "[A-Za-z0-9]+"
-                  },
-                  on: {
-                    focus: function($event) {
-                      return _vm.rise()
-                    },
-                    blur: function($event) {
-                      return _vm.fall()
-                    },
-                    keyup: function($event) {
-                      return _vm.validatePasswd()
+                _c("span", { attrs: { "data-placeholder": "Password" } }, [
+                  _c("i", {
+                    staticClass: "fa fa-eye",
+                    on: {
+                      click: function($event) {
+                        return _vm.preview()
+                      }
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { attrs: { "data-placeholder": "Password again" } }),
-                _vm._v(" "),
-                _c("span", { attrs: { id: "message" } })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "txtb" }, [
-                _c("input", {
-                  attrs: {
-                    type: "email",
-                    required: "",
-                    name: "email_register",
-                    pattern: "[A-Za-z0-9-_@.]+"
-                  },
-                  on: {
-                    focus: function($event) {
-                      return _vm.rise()
-                    },
-                    blur: function($event) {
-                      return _vm.fall()
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", { attrs: { "data-placeholder": "Email" } })
+                  })
+                ])
               ]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "logbtn",
-                attrs: { type: "submit", value: "Register" }
+                attrs: { type: "submit", value: "Login" }
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "bottom-text" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "bottom-text",
+                  staticStyle: { "font-size": "16px" }
+                },
+                [
+                  _vm._v(
+                    "\n                        Don't have account?\n                        "
+                  ),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "regbtn",
+                      on: {
+                        click: function($event) {
+                          return _vm.register()
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticStyle: { "font-size": "16px" },
+                          attrs: { href: "#register" }
+                        },
+                        [_vm._v("Sign\n                            up")]
+                      )
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flip-card-back",
+            staticStyle: { "backface-visibility": "hidden" }
+          },
+          [
+            _c(
+              "form",
+              {
+                staticClass: "register-form",
+                attrs: { id: "register", action: "register", method: "post" },
+                on: {
+                  submit: function($event) {
+                    return _vm.validateSubmit()
+                  }
+                }
+              },
+              [
                 _c(
-                  "button",
+                  "h1",
                   {
-                    staticClass: "regbtn",
+                    staticStyle: { cursor: "crosshair" },
                     on: {
                       click: function($event) {
-                        return _vm.register()
+                        return _vm.easteregg()
                       }
                     }
                   },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticStyle: { "font-size": "16px" },
-                        attrs: { href: "#login" }
+                  [_vm._v("Register")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "txtb" }, [
+                  _c("input", {
+                    attrs: {
+                      type: "text",
+                      required: "",
+                      name: "username_register",
+                      pattern: "[A-Za-z0-9]+"
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.rise()
                       },
-                      [_vm._v("←\n                        Back to Login")]
-                    )
-                  ]
-                )
-              ])
-            ]
-          )
-        ]
-      )
+                      blur: function($event) {
+                        return _vm.fall()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { attrs: { "data-placeholder": "Username" } })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "txtb" }, [
+                  _c("input", {
+                    attrs: {
+                      type: "password",
+                      required: "",
+                      name: "password_register",
+                      pattern: "[A-Za-z0-9]+"
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.rise()
+                      },
+                      blur: function($event) {
+                        return _vm.fall()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { attrs: { "data-placeholder": "Password" } })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "txtb" }, [
+                  _c("input", {
+                    attrs: {
+                      type: "password",
+                      required: "",
+                      name: "password_register",
+                      pattern: "[A-Za-z0-9]+"
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.rise()
+                      },
+                      blur: function($event) {
+                        return _vm.fall()
+                      },
+                      keyup: function($event) {
+                        return _vm.validatePasswd()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", {
+                    attrs: { "data-placeholder": "Password again" }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { attrs: { id: "message" } })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "txtb" }, [
+                  _c("input", {
+                    attrs: {
+                      type: "email",
+                      required: "",
+                      name: "email_register",
+                      pattern: "[A-Za-z0-9-_@.]+"
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.rise()
+                      },
+                      blur: function($event) {
+                        return _vm.fall()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { attrs: { "data-placeholder": "Email" } })
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "logbtn",
+                  attrs: { type: "submit", value: "Register" }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "bottom-text" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "regbtn",
+                      on: {
+                        click: function($event) {
+                          return _vm.register()
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticStyle: { "font-size": "16px" },
+                          attrs: { href: "#login" }
+                        },
+                        [_vm._v("←\n                            Back to Login")]
+                      )
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]
+        )
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "theme-switch login", attrs: { for: "checkbox" } },
+      [
+        _c("input", { attrs: { type: "checkbox", id: "checkbox" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "slider round" })
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 if (false) {

@@ -4,7 +4,8 @@
         data() {
             return {
                 counter: 0,
-                match: false
+                match: false,
+                stars: false
             }
 
         },
@@ -21,10 +22,10 @@
                     this.match = true;
                 }
             },
-            validateSubmit: function(){
-                 if(this.match === false) {
-                     event.preventDefault();
-                 }
+            validateSubmit: function () {
+                if (this.match === false) {
+                    event.preventDefault();
+                }
             },
             register: function () {
                 const card = document.querySelector('div.flip-card-child');
@@ -69,6 +70,11 @@
                 }
                 if (this.counter < 5) event.target.classList.add("pulse");
                 if (this.counter >= 5) this.counter = 0;
+            },
+            toggle: function () {
+                if (document.querySelector('input#checkbox:checked')) {
+                    this.stars = !this.stars;
+                }
             }
         },
         name: 'render_login'
@@ -76,64 +82,82 @@
 </script>
 
 <template>
-    <div class="flip-card-parent">
-        <div class="flip-card-child">
-            <div class="flip-card-front">
-                <form id="login" action="login" class="login-form" method="post">
-                    <h1>Login</h1>
-                    <div class="txtb">
-                        <input type="text" name="username_login" pattern="[A-Za-z0-9]+" @focus="rise()" @blur="fall()">
-                        <span data-placeholder="Username"></span>
-                    </div>
+    <div>
+        <div>
+            <div v-if="this.stars" class="stars"></div>
+            <div v-if="this.stars" class="twinkling"></div>
+        </div>
+        <div @click="toggle()" class="theme-switch-wrapper-login">
+            <label class="theme-switch login" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+            <em style="color: #fff">Enable Dark Mode</em>
+        </div>
+        <div class="flip-card-parent">
+            <div class="flip-card-child">
+                <div class="flip-card-front">
+                    <form id="login" action="login" class="login-form" method="post">
+                        <h1>Login</h1>
+                        <div class="txtb">
+                            <input type="text" name="username_login" pattern="[A-Za-z0-9]+" @focus="rise()"
+                                   @blur="fall()">
+                            <span data-placeholder="Username"></span>
+                        </div>
 
-                    <div class="txtb">
-                        <input type="password" name="password_login" pattern="[A-Za-z0-9]+" @focus="rise()"
-                               @blur="fall()">
+                        <div class="txtb">
+                            <input type="password" name="password_login" pattern="[A-Za-z0-9]+" @focus="rise()"
+                                   @blur="fall()">
 
-                        <span data-placeholder="Password"><i class="fa fa-eye" @click="preview()"></i></span>
-                    </div>
-                    <input type="submit" class="logbtn" value="Login">
+                            <span data-placeholder="Password"><i class="fa fa-eye" @click="preview()"></i></span>
+                        </div>
+                        <input type="submit" class="logbtn" value="Login">
 
-                    <div style="font-size: 16px" class="bottom-text">
-                        Don't have account?
-                        <button class="regbtn" @click="register()"><a style="font-size: 16px" href="#register">Sign
-                            up</a></button>
-                    </div>
-                </form>
-            </div>
-            <div class="flip-card-back" style="backface-visibility: hidden">
-                <form id="register" action="register" @submit="validateSubmit()" class="register-form" method="post">
-                    <h1 @click="easteregg()" style="cursor: crosshair">Register</h1>
-                    <div class="txtb">
-                        <input type="text" required name="username_register" pattern="[A-Za-z0-9]+" @focus="rise()"
-                               @blur="fall()">
-                        <span data-placeholder="Username"></span>
-                    </div>
+                        <div style="font-size: 16px" class="bottom-text">
+                            Don't have account?
+                            <button class="regbtn" @click="register()"><a style="font-size: 16px" href="#register">Sign
+                                up</a></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="flip-card-back" style="backface-visibility: hidden">
+                    <form id="register" action="register" @submit="validateSubmit()" class="register-form"
+                          method="post">
+                        <h1 @click="easteregg()" style="cursor: crosshair">Register</h1>
+                        <div class="txtb">
+                            <input type="text" required name="username_register" pattern="[A-Za-z0-9]+" @focus="rise()"
+                                   @blur="fall()">
+                            <span data-placeholder="Username"></span>
+                        </div>
 
-                    <div class="txtb">
-                        <input type="password" required name="password_register" pattern="[A-Za-z0-9]+" @focus="rise()"
-                               @blur="fall()">
-                        <span data-placeholder="Password"></span>
-                    </div>
+                        <div class="txtb">
+                            <input type="password" required name="password_register" pattern="[A-Za-z0-9]+"
+                                   @focus="rise()"
+                                   @blur="fall()">
+                            <span data-placeholder="Password"></span>
+                        </div>
 
-                    <div class="txtb">
-                        <input type="password" required name="password_register" pattern="[A-Za-z0-9]+" @focus="rise()"
-                               @blur="fall()" @keyup="validatePasswd()">
-                        <span data-placeholder="Password again"></span>
-                        <span id="message"></span>
-                    </div>
+                        <div class="txtb">
+                            <input type="password" required name="password_register" pattern="[A-Za-z0-9]+"
+                                   @focus="rise()"
+                                   @blur="fall()" @keyup="validatePasswd()">
+                            <span data-placeholder="Password again"></span>
+                            <span id="message"></span>
+                        </div>
 
-                    <div class="txtb">
-                        <input type="email" required name="email_register" pattern="[A-Za-z0-9-_@.]+" @focus="rise()"
-                               @blur="fall()">
-                        <span data-placeholder="Email"></span>
-                    </div>
-                    <input type="submit" class="logbtn" value="Register">
-                    <div class="bottom-text">
-                        <button class="regbtn" @click="register()"><a style="font-size: 16px" href="#login">&larr;
-                            Back to Login</a></button>
-                    </div>
-                </form>
+                        <div class="txtb">
+                            <input type="email" required name="email_register" pattern="[A-Za-z0-9-_@.]+"
+                                   @focus="rise()"
+                                   @blur="fall()">
+                            <span data-placeholder="Email"></span>
+                        </div>
+                        <input type="submit" class="logbtn" value="Register">
+                        <div class="bottom-text">
+                            <button class="regbtn" @click="register()"><a style="font-size: 16px" href="#login">&larr;
+                                Back to Login</a></button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -179,5 +203,21 @@
     span#message {
         font-size: 15px;
         display: flex;
+    }
+
+    .theme-switch-wrapper-login {
+        display: flex;
+        align-items: center;
+        margin: 20px auto;
+        right: 20px;
+        position: absolute;
+    }
+    label.login {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+    .dark-content {
+        background-color: transparent;
+        color: #fff;
     }
 </style>
