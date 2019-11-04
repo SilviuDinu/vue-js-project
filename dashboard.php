@@ -17,13 +17,9 @@ session_abort();
           type="text/css">
     <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-<body class="fixed-nav sticky-footer" id="page-top">
+<body class="default fixed-nav sticky-footer" id="page-top">
 <?php
-session_start();
-echo '<script name="auth"> sessionStorage.setItem("loggedin", "';
-echo $_SESSION['current_user'];
-echo '");</script>';
-session_abort();
+include ('session_storage.php');
 ?>
 <div class="overlay">
     <div class="loading">

@@ -159,6 +159,7 @@
                         contents[i].classList.toggle('dark-content');
                     }
                     document.querySelector('body').classList.toggle('body-dark-mode');
+                    document.querySelector('body').classList.toggle('default');
                 }
             }
         },

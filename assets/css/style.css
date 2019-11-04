@@ -65,7 +65,7 @@ li.greeting {
         margin: 15px auto;
     }
 
-    .copyright{
+    .copyright {
         bottom: -250vh;
     }
 
@@ -77,33 +77,41 @@ li.greeting {
         display: grid !important;
     }
 
-    #wrapper{
+    #wrapper {
         height: auto !important;
     }
-    .login-form h1, .register-form h1{
+
+    .login-form h1, .register-form h1 {
         margin-bottom: 30px !important;
     }
-    .bottom-text{
+
+    .bottom-text {
         margin-top: 25px !important;
     }
-    form#login{
+
+    form#login {
         width: 270px;
         height: 450px;
     }
-    form#register{
+
+    form#register {
         width: 270px;
         height: 490px !important;
     }
+
     .theme-switch-wrapper-login {
         display: none !important;
     }
-    .register-form{
+
+    .register-form {
         padding: 20px 30px !important;
     }
 }
-.body-dark-mode{
+
+.body-dark-mode {
     background-color: #000 !important;
- }
+}
+
 @media screen and (max-width: 370px) {
 
 }
@@ -165,9 +173,12 @@ i.fa.fa-eye, i.fa.fa-eye-slash {
     cursor: pointer;
 }
 
+.default {
+    background-image: linear-gradient(120deg, #3498db, #8e44ad);
+}
+
 body {
     min-height: 100vh;
-    background-image: linear-gradient(120deg, #3498db, #8e44ad);
     height: auto;
 }
 
@@ -485,45 +496,64 @@ input:checked + .slider:before {
 
 /*STARSS*/
 @keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -10000px 5000px;
+    }
 }
+
 @-webkit-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -10000px 5000px;
+    }
 }
+
 @-moz-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -10000px 5000px;
+    }
 }
+
 @-ms-keyframes move-twink-back {
-    from {background-position:0 0;}
-    to {background-position:-10000px 5000px;}
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -10000px 5000px;
+    }
 }
+
 .stars, .twinkling {
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    width:100%;
-    height:100%;
-    display:block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
     z-index: -2;
 }
 
 .stars {
-    background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
-    z-index:-2;
+    background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    z-index: -2;
 }
 
-.twinkling{
-    background:transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
-    z-index:-2;
-
-    -moz-animation:move-twink-back 200s linear infinite;
-    -ms-animation:move-twink-back 200s linear infinite;
-    -o-animation:move-twink-back 200s linear infinite;
-    -webkit-animation:move-twink-back 200s linear infinite;
-    animation:move-twink-back 200s linear infinite;
+.twinkling {
+    background: transparent url(http://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+    z-index: -2;
+    -moz-animation: move-twink-back 200s linear infinite;
+    -ms-animation: move-twink-back 200s linear infinite;
+    -o-animation: move-twink-back 200s linear infinite;
+    -webkit-animation: move-twink-back 200s linear infinite;
+    animation: move-twink-back 200s linear infinite;
 }
