@@ -17,16 +17,18 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-dashboard" id="exampleAccordion">
-                    <li @click.prevent="renderPage()"><a href="#home">Home</a></li>
+                    <li><a @click.prevent="renderPage()" href="#home">Home</a></li>
                     <li><a @click.prevent="renderPage()" href="#news">News</a></li>
                     <li><a @click.prevent="renderPage()" href="#contact">Contact</a></li>
-                    <li><a @click="toggle()" class="toggle-item" href="#"><div class="theme-switch-wrapper">
-                        <label class="theme-switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" />
-                            <div class="slider round"></div>
-                        </label>
-                        <em>Enable Dark Mode</em>
-                    </div></a></li>
+                    <li><a class="toggle-item" href="#">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input @click="toggle()" type="checkbox" id="checkbox" :checked="this.stars">
+                                <div class="slider round"></div>
+                            </label>
+                            <em>Enable Dark Mode</em>
+                        </div>
+                    </a></li>
                     <li @click="renderPage()" class="greeting">
                         <img src="assets/img/img_avatar.png" alt="Avatar" class="avatar">Hello, {{ this.name }}
                     </li>
@@ -91,12 +93,13 @@
                 home: true,
                 news: false,
                 contact: false,
-                stars: false
+                stars: !!sessionStorage.getItem('dark')
             }
         },
         methods: {
             logout: function () {
                 sessionStorage.removeItem("loggedin");
+                sessionStorage.removeItem("dark");
                 window.location.pathname = '/vue-js-project/destroy_session.php';
             },
             easteregg: function () {
@@ -151,17 +154,29 @@
                 }
             },
             toggle: function () {
-                if(document.querySelector('input#checkbox:checked')) {
+                if(document.querySelector('input#checkbox').checked === false){
+                    console.log('sss');
                     this.stars = !this.stars;
+                    sessionStorage.removeItem('dark');
                     document.querySelector('div#wrapper').classList.toggle('dark-mode');
                     const contents = document.querySelectorAll('div.content');
-                    for(let i=0; i<contents.length; i++){
+                    for (let i = 0; i < contents.length; i++) {
                         contents[i].classList.toggle('dark-content');
                     }
                     document.querySelector('body').classList.toggle('body-dark-mode');
-                    document.querySelector('body').classList.toggle('default');
                 }
-            }
+
+                if (document.querySelector('input#checkbox:checked')) {
+                    this.stars = !this.stars;
+                    sessionStorage.setItem('dark', 'true');
+                    document.querySelector('div#wrapper').classList.toggle('dark-mode');
+                    const contents = document.querySelectorAll('div.content');
+                    for (let i = 0; i < contents.length; i++) {
+                        contents[i].classList.toggle('dark-content');
+                    }
+                    document.querySelector('body').classList.toggle('body-dark-mode');
+                }
+            },
         },
         name: 'dashboard'
     }
@@ -191,11 +206,13 @@
         align-items: center;
         margin: -5px auto;
     }
+
     label {
         display: inline-block;
         margin-bottom: 0;
     }
-    .dark-mode{
+
+    .dark-mode {
         color: #fff;
     }
 
@@ -203,8 +220,8 @@
         background-color: rgba(217, 223, 254, 0.2);
     }
 
-    .dark-content{
-        background-color: rgba(255,255,255,0.05);
+    .dark-content {
+        background-color: rgba(255, 255, 255, 0.05);
     }
 
     p {
@@ -260,7 +277,7 @@
     }
 
     @media (max-width: 1024px) {
-        div.content{
+        div.content {
             width: 100%;
         }
     }

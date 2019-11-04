@@ -109,6 +109,7 @@ li.greeting {
 }
 
 .body-dark-mode {
+    background-image: none;
     background-color: #000 !important;
 }
 
@@ -173,13 +174,10 @@ i.fa.fa-eye, i.fa.fa-eye-slash {
     cursor: pointer;
 }
 
-.default {
-    background-image: linear-gradient(120deg, #3498db, #8e44ad);
-}
-
 body {
     min-height: 100vh;
     height: auto;
+    background-image: linear-gradient(120deg, #3498db, #8e44ad);
 }
 
 .alert-fail {

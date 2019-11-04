@@ -12920,6 +12920,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
     data: function data() {
@@ -12930,13 +12932,14 @@ exports.default = {
             home: true,
             news: false,
             contact: false,
-            stars: false
+            stars: !!sessionStorage.getItem('dark')
         };
     },
 
     methods: {
         logout: function logout() {
             sessionStorage.removeItem("loggedin");
+            sessionStorage.removeItem("dark");
             window.location.pathname = '/vue-js-project/destroy_session.php';
         },
         easteregg: function easteregg() {
@@ -12991,15 +12994,27 @@ exports.default = {
             }
         },
         toggle: function toggle() {
-            if (document.querySelector('input#checkbox:checked')) {
+            if (document.querySelector('input#checkbox').checked === false) {
+                console.log('sss');
                 this.stars = !this.stars;
+                sessionStorage.removeItem('dark');
                 document.querySelector('div#wrapper').classList.toggle('dark-mode');
                 var contents = document.querySelectorAll('div.content');
                 for (var i = 0; i < contents.length; i++) {
                     contents[i].classList.toggle('dark-content');
                 }
                 document.querySelector('body').classList.toggle('body-dark-mode');
-                document.querySelector('body').classList.toggle('default');
+            }
+
+            if (document.querySelector('input#checkbox:checked')) {
+                this.stars = !this.stars;
+                sessionStorage.setItem('dark', 'true');
+                document.querySelector('div#wrapper').classList.toggle('dark-mode');
+                var _contents = document.querySelectorAll('div.content');
+                for (var _i4 = 0; _i4 < _contents.length; _i4++) {
+                    _contents[_i4].classList.toggle('dark-content');
+                }
+                document.querySelector('body').classList.toggle('body-dark-mode');
             }
         }
     },
@@ -13062,6 +13077,14 @@ window.addEventListener('load', function () {
                 return h(_App2.default);
             }
         });
+    }
+    if (sessionStorage.getItem('dark') && sessionStorage.dark === 'true') {
+        document.querySelector('div#wrapper').classList.toggle('dark-mode');
+        var contents = document.querySelectorAll('div.content');
+        for (var i = 0; i < contents.length; i++) {
+            contents[i].classList.toggle('dark-content');
+        }
+        document.querySelector('body').classList.toggle('body-dark-mode');
     }
 });
 
@@ -13963,7 +13986,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(5)(false);
 // Module
-exports.push([module.i, "\nh1[data-v-3bfbc1e1] {\n    text-align: center;\n    margin-bottom: 50px;\n}\ndiv.container[data-v-3bfbc1e1] {\n    width: 100%;\n}\ndiv.content[data-v-3bfbc1e1] {\n    margin: 5px;\n    padding: 25px;\n    display: inline-block;\n    border: 2px solid;\n    width: 49%;\n}\n.theme-switch-wrapper[data-v-3bfbc1e1] {\n    display: flex;\n    align-items: center;\n    margin: -5px auto;\n}\nlabel[data-v-3bfbc1e1] {\n    display: inline-block;\n    margin-bottom: 0;\n}\n.dark-mode[data-v-3bfbc1e1]{\n    color: #fff;\n}\ndiv.content[data-v-3bfbc1e1]:hover {\n    background-color: rgba(217, 223, 254, 0.2);\n}\n.dark-content[data-v-3bfbc1e1]{\n    background-color: rgba(255,255,255,0.05);\n}\np[data-v-3bfbc1e1] {\n    text-align: center;\n}\n.btn[data-v-3bfbc1e1] {\n    border: 2px solid #4682B4;\n    margin-bottom: 0;\n    font-weight: 500;\n}\n.logout[data-v-3bfbc1e1] {\n    position: fixed;\n    right: 25px;\n    min-width: 115px;\n    max-height: 55px;\n}\nnav[data-v-3bfbc1e1] {\n    position: fixed;\n}\n.navbar-toggler[data-v-3bfbc1e1] {\n    border: 1px solid;\n}\n@keyframes pulse_logo_animation-data-v-3bfbc1e1 {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n@media (max-width: 1024px) {\ndiv.content[data-v-3bfbc1e1]{\n        width: 100%;\n}\n}\n.pulse-logo[data-v-3bfbc1e1] {\n    animation-name: pulse_logo_animation-data-v-3bfbc1e1;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
+exports.push([module.i, "\nh1[data-v-3bfbc1e1] {\n    text-align: center;\n    margin-bottom: 50px;\n}\ndiv.container[data-v-3bfbc1e1] {\n    width: 100%;\n}\ndiv.content[data-v-3bfbc1e1] {\n    margin: 5px;\n    padding: 25px;\n    display: inline-block;\n    border: 2px solid;\n    width: 49%;\n}\n.theme-switch-wrapper[data-v-3bfbc1e1] {\n    display: flex;\n    align-items: center;\n    margin: -5px auto;\n}\nlabel[data-v-3bfbc1e1] {\n    display: inline-block;\n    margin-bottom: 0;\n}\n.dark-mode[data-v-3bfbc1e1] {\n    color: #fff;\n}\ndiv.content[data-v-3bfbc1e1]:hover {\n    background-color: rgba(217, 223, 254, 0.2);\n}\n.dark-content[data-v-3bfbc1e1] {\n    background-color: rgba(255, 255, 255, 0.05);\n}\np[data-v-3bfbc1e1] {\n    text-align: center;\n}\n.btn[data-v-3bfbc1e1] {\n    border: 2px solid #4682B4;\n    margin-bottom: 0;\n    font-weight: 500;\n}\n.logout[data-v-3bfbc1e1] {\n    position: fixed;\n    right: 25px;\n    min-width: 115px;\n    max-height: 55px;\n}\nnav[data-v-3bfbc1e1] {\n    position: fixed;\n}\n.navbar-toggler[data-v-3bfbc1e1] {\n    border: 1px solid;\n}\n@keyframes pulse_logo_animation-data-v-3bfbc1e1 {\n0% {\n        transform: scale(1);\n}\n30% {\n        transform: scale(1);\n}\n40% {\n        transform: scale(1.25);\n}\n50% {\n        transform: scale(1);\n}\n60% {\n        transform: scale(1);\n}\n70% {\n        transform: scale(1.25);\n}\n80% {\n        transform: scale(1);\n}\n100% {\n        transform: scale(1);\n}\n}\n@media (max-width: 1024px) {\ndiv.content[data-v-3bfbc1e1] {\n        width: 100%;\n}\n}\n.pulse-logo[data-v-3bfbc1e1] {\n    animation-name: pulse_logo_animation-data-v-3bfbc1e1;\n    animation-duration: 1500ms;\n    animation-iteration-count: infinite;\n    animation-timing-function: linear;\n}\n", ""]);
 
 
 /***/ }),
@@ -14015,18 +14038,21 @@ var render = function() {
                 attrs: { id: "exampleAccordion" }
               },
               [
-                _c(
-                  "li",
-                  {
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.renderPage()
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "#home" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.renderPage()
+                        }
                       }
-                    }
-                  },
-                  [_c("a", { attrs: { href: "#home" } }, [_vm._v("Home")])]
-                ),
+                    },
+                    [_vm._v("Home")]
+                  )
+                ]),
                 _vm._v(" "),
                 _c("li", [
                   _c(
@@ -14063,16 +14089,33 @@ var render = function() {
                 _c("li", [
                   _c(
                     "a",
-                    {
-                      staticClass: "toggle-item",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          return _vm.toggle()
-                        }
-                      }
-                    },
-                    [_vm._m(1)]
+                    { staticClass: "toggle-item", attrs: { href: "#" } },
+                    [
+                      _c("div", { staticClass: "theme-switch-wrapper" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "theme-switch",
+                            attrs: { for: "checkbox" }
+                          },
+                          [
+                            _c("input", {
+                              attrs: { type: "checkbox", id: "checkbox" },
+                              domProps: { checked: this.stars },
+                              on: {
+                                click: function($event) {
+                                  return _vm.toggle()
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "slider round" })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("em", [_vm._v("Enable Dark Mode")])
+                      ])
+                    ]
                   )
                 ]),
                 _vm._v(" "),
@@ -14273,20 +14316,6 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "theme-switch-wrapper" }, [
-      _c("label", { staticClass: "theme-switch", attrs: { for: "checkbox" } }, [
-        _c("input", { attrs: { type: "checkbox", id: "checkbox" } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "slider round" })
-      ]),
-      _vm._v(" "),
-      _c("em", [_vm._v("Enable Dark Mode")])
-    ])
   }
 ]
 render._withStripped = true

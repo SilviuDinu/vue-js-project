@@ -22,7 +22,7 @@ session_abort();
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900|Ubuntu:400,500,700" rel="stylesheet">
     <script src="http://use.fontawesome.com/2f39677d1c.js"></script>
 </head>
-<body class="default">
+<body>
 <div class="overlay">
     <div class="loading">
         <h2>

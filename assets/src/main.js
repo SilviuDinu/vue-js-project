@@ -26,6 +26,15 @@ window.addEventListener('load', function () {
             render: (h) => h(App)
         });
     }
+    if(sessionStorage.getItem('dark') && sessionStorage.dark === 'true'){
+        document.querySelector('div#wrapper').classList.toggle('dark-mode');
+        const contents = document.querySelectorAll('div.content');
+        for(let i=0; i<contents.length; i++){
+            contents[i].classList.toggle('dark-content');
+        }
+        document.querySelector('body').classList.toggle('body-dark-mode');
+    }
+
 });
 
 

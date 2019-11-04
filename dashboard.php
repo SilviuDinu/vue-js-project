@@ -17,7 +17,7 @@ session_abort();
           type="text/css">
     <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-<body class="default fixed-nav sticky-footer" id="page-top">
+<body class="fixed-nav sticky-footer" id="page-top">
 <?php
 include ('session_storage.php');
 ?>
